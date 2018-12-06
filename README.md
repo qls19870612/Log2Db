@@ -1,7 +1,7 @@
 # Log2Db<br>
 日志入库<br>
 
-参数<br>
+第N个参数含义<br>
 1 游戏代码（如diablo)<br>
 2 平台代码 （如yy)<br>
 
