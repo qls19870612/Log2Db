@@ -1,0 +1,316 @@
+2018-12-01 14:24:07 [main] DEBUG main.LogParser - LogParser configDbName:dbbhsconf,logDbName:dbbhsyylog
+2018-12-01 14:24:07 [main] DEBUG main.LogParser - LogParser count:3,endTime:20181201142407898
+2018-12-01 14:24:08 [main] DEBUG main.LogParser - loadPlatInfoFromDb sql:select * from tbplt where vPname = 'yy'_select * from tbplt where vPname = 'yy'
+2018-12-01 14:24:08 [main] DEBUG main.LogParser - loadPlatInfoFromDb resultSet:com.mysql.jdbc.JDBC4ResultSet@1deb50e
+2018-12-01 14:24:08 [main] DEBUG main.LogParser - loadPlatInfoFromDb next:true
+2018-12-01 14:24:08 [main] DEBUG main.LogParser - loadPlatInfoFromDb platId:1
+2018-12-01 14:24:08 [main] DEBUG main.LogParser - LogParser platFolder.getPath():D:\workspace\Log2Db\1
+2018-12-01 14:24:08 [main] DEBUG main.LogParser - startParser :û���ļ���Ҫ����
+2018-12-01 14:24:08 [main] DEBUG main.LogParser - LogParser System.currentTimeMillis() - startTime:198
+2018-12-01 17:53:09 [main] DEBUG main.LogParser - LogParser configDbName:dbbhsconf,logDbName:dbbhsyylog
+2018-12-01 17:53:09 [main] DEBUG main.LogParser - LogParser count:3,endTime:20181201175309404
+2018-12-01 17:53:09 [main] DEBUG main.LogParser - loadPlatInfoFromDb sql:select * from tbplt where vPname = 'yy'_select * from tbplt where vPname = 'yy'
+2018-12-01 17:53:09 [main] DEBUG main.LogParser - loadPlatInfoFromDb resultSet:com.mysql.jdbc.JDBC4ResultSet@36ebc363
+2018-12-01 17:53:09 [main] DEBUG main.LogParser - loadPlatInfoFromDb next:true
+2018-12-01 17:53:09 [main] DEBUG main.LogParser - loadPlatInfoFromDb platId:1
+2018-12-01 17:53:09 [main] DEBUG main.LogParser - LogParser platFolder.getPath():D:\workspace\Log2Db\1
+2018-12-01 17:53:09 [main] DEBUG main.LogParser - startParser :没有文件需要处理
+2018-12-01 17:53:09 [main] DEBUG main.LogParser - LogParser System.currentTimeMillis() - startTime:330
+2018-12-01 20:14:55 [main] DEBUG main.LogParser - LogParser configDbName:dbbhsconf,logDbName:dbbhsyylog
+2018-12-01 20:14:55 [main] DEBUG main.LogParser - LogParser count:3,endTime:20181201201455169
+2018-12-01 20:14:55 [main] DEBUG main.LogParser - loadPlatInfoFromDb sql:select * from tbplt where vPname = 'yy'
+2018-12-01 20:14:55 [main] DEBUG main.LogParser - loadPlatInfoFromDb resultSet:com.mysql.jdbc.JDBC4ResultSet@36ebc363
+2018-12-01 20:14:55 [main] DEBUG main.LogParser - loadPlatInfoFromDb next:true
+2018-12-01 20:14:55 [main] DEBUG main.LogParser - loadPlatInfoFromDb platId:1
+2018-12-01 20:14:55 [main] DEBUG main.LogParser - LogParser platFolder.getPath():D:\workspace\Log2Db\1
+2018-12-01 20:14:55 [main] DEBUG main.LogParser - startParser :没有文件需要处理
+2018-12-01 20:14:55 [main] DEBUG main.LogParser - LogParser System.currentTimeMillis() - startTime:385
+2018-12-01 20:15:06 [main] DEBUG main.LogParser - LogParser configDbName:dbbhsconf,logDbName:dbbhsyylog
+2018-12-01 20:15:06 [main] DEBUG main.LogParser - LogParser count:3,endTime:20181201201506074
+2018-12-01 20:15:06 [main] DEBUG main.LogParser - loadPlatInfoFromDb sql:select * from tbplt where vPname = 'yy'
+2018-12-01 20:15:06 [main] DEBUG main.LogParser - loadPlatInfoFromDb resultSet:com.mysql.jdbc.JDBC4ResultSet@36ebc363
+2018-12-01 20:15:06 [main] DEBUG main.LogParser - loadPlatInfoFromDb next:true
+2018-12-01 20:15:06 [main] DEBUG main.LogParser - loadPlatInfoFromDb platId:1
+2018-12-01 20:15:06 [main] DEBUG main.LogParser - LogParser platFolder.getPath():D:\workspace\Log2Db\1
+2018-12-01 20:15:06 [main] DEBUG main.LogParser - tryCreateLogDb createTableSql:CREATE TABLE IF NOT EXISTS `Shop` (
+`iEventId` varchar(60) COMMENT '游戏事件ID',
+`iWorldId` int(11) COMMENT '游戏大区ID',
+`iUin` varchar(60) COMMENT '用户ID',
+`dtEventTime` datetime COMMENT '记录时间, 格式 YYYY-MM-DD HH:MM:SS',
+`iRoleId` bigint(20) COMMENT '角色ID',
+`vClientIp` varchar(16) COMMENT '客户端所在ip',
+`vRoleName` varchar(20) COMMENT '角色名',
+`iJobId` tinyint(11) COMMENT '角色职业',
+`iCost` bigint(20) COMMENT '支付消耗',
+`iShopType` tinyint(11) COMMENT '商店类型，消费类型 1为各种商店购买，2为其他消费如元宝一键扫荡等',
+`iGoodsType` int(11) COMMENT '商品类型',
+`iGoodsId` int(11) COMMENT '物品ID',
+`iGoodsNum` int(11) COMMENT '物品数量',
+`vGuid` varchar(60) COMMENT '全局唯一标识(暂时没用,空着)',
+`iLoginWay` int(11) COMMENT '登录渠道',
+`iNewCash` bigint(20) COMMENT '钻石余量'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+2018-12-01 20:15:06 [main] DEBUG main.LogParser - tryCreateLogDb createTableSql:CREATE TABLE IF NOT EXISTS `RoleLogout` (
+`iEventId` varchar(60) COMMENT '游戏事件ID',
+`iWorldId` int(11) COMMENT '游戏大区ID',
+`iUin` varchar(60) COMMENT '用户ID',
+`dtEventTime` datetime COMMENT '记录时间, 格式 YYYY-MM-DD HH:MM:SS',
+`dtLoginTime` datetime COMMENT '登录时间, 格式 YYYY-MM-DD HH:MM:SS',
+`iRoleId` bigint(20) COMMENT '角色ID',
+`vClientIp` varchar(16) COMMENT '客户端所在ip',
+`dtCreateTime` datetime COMMENT '角色创建的时间',
+`iOnlineTime` int(11) COMMENT '本次登录在线时间',
+`iOnlineTotalTime` int(11) COMMENT '角色总在线时长',
+`vRoleName` varchar(20) COMMENT '角色名',
+`iJobId` tinyint(11) COMMENT '角色职业',
+`iRoleLevel` int(11) COMMENT '角色等级',
+`iRoleExp` int(11) COMMENT '角色经验值',
+`iMoney` bigint(20) COMMENT '角色金币数',
+`iLijin` bigint(20) COMMENT '角色绑钻数量',
+`iGamePoints` bigint(20) COMMENT '角色钻石数量',
+`iLoginWay` int(11) COMMENT '登录渠道'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+2018-12-01 20:15:06 [main] DEBUG main.LogParser - tryCreateLogDb createTableSql:CREATE TABLE IF NOT EXISTS `MoneyFlow` (
+`iEventId` varchar(60) COMMENT '游戏事件ID',
+`iWorldId` int(11) COMMENT '游戏大区ID',
+`iUin` varchar(60) COMMENT '用户ID',
+`dtEventTime` datetime COMMENT '记录时间, 格式 YYYY-MM-DD HH:MM:SS',
+`iRoleId` bigint(20) COMMENT '角色ID',
+`vRoleName` varchar(20) COMMENT '角色名',
+`iJobId` tinyint(11) COMMENT '角色职业',
+`iRoleLevel` int(11) COMMENT '角色等级',
+`iMoneyBeforer` bigint(20) COMMENT '动作前的金钱数',
+`iMoneyAfter` bigint(20) COMMENT '动作后的金钱数',
+`iMoney` bigint(20) COMMENT '动作涉及的金钱数',
+`iMoneyType` int(11) COMMENT '金钱的类型',
+`iAction` int(11) COMMENT '动作,发生原因'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+2018-12-01 20:15:06 [main] DEBUG main.LogParser - tryCreateLogDb createTableSql:CREATE TABLE IF NOT EXISTS `RoleLogin` (
+`iEventId` varchar(60) COMMENT '游戏事件ID',
+`iWorldId` int(11) COMMENT '游戏大区ID',
+`iUin` varchar(60) COMMENT '用户ID',
+`dtEventTime` datetime COMMENT '记录时间, 格式 YYYY-MM-DD HH:MM:SS',
+`iRoleId` bigint(20) COMMENT '角色ID',
+`vClientIp` varchar(16) COMMENT '客户端所在ip',
+`vRoleName` varchar(20) COMMENT '角色名',
+`iJobId` tinyint(11) COMMENT '角色职业',
+`iRoleLevel` int(11) COMMENT '角色等级',
+`iRoleExp` int(11) COMMENT '角色经验值',
+`iMoney` bigint(20) COMMENT '角色金币数',
+`iLijin` bigint(20) COMMENT '角色绑钻数量',
+`iGamePoints` bigint(20) COMMENT '角色钻石数量',
+`dtCreateTime` datetime COMMENT '角色创建的时间',
+`iOnlineTotalTime` int(11) COMMENT '角色总在线时长',
+`iLoginWay` int(11) COMMENT '登录渠道'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+2018-12-01 20:15:06 [main] DEBUG main.LogParser - tryCreateLogDb createTableSql:CREATE TABLE IF NOT EXISTS `RoleLevelUp` (
+`iEventId` varchar(60) COMMENT '游戏事件ID',
+`iWorldId` int(11) COMMENT '游戏大区ID',
+`iUin` varchar(60) COMMENT '用户ID',
+`dtEventTime` datetime COMMENT '记录时间, 格式 YYYY-MM-DD HH:MM:SS',
+`iRoleId` bigint(20) COMMENT '角色ID',
+`vClientIp` varchar(16) COMMENT '客户端所在ip',
+`vRoleName` varchar(20) COMMENT '角色名',
+`iJobId` tinyint(11) COMMENT '角色职业',
+`iRoleLevel` int(11) COMMENT '角色等级',
+`iRoleExp` int(11) COMMENT '角色经验值',
+`iMoney` bigint(20) COMMENT '角色金币数',
+`iLijin` bigint(20) COMMENT '角色绑钻数量',
+`iGamePoints` bigint(20) COMMENT '角色钻石数量',
+`dtCreateTime` datetime COMMENT '角色创建的时间',
+`iOnlineTotalTime` int(11) COMMENT '角色总在线时长',
+`iReason` int(11) COMMENT '升级原因',
+`iLoginWay` int(11) COMMENT '登录渠道'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+2018-12-01 20:15:06 [main] DEBUG main.LogParser - tryCreateLogDb createTableSql:CREATE TABLE IF NOT EXISTS `Recharge` (
+`iEventId` varchar(60) COMMENT '操作ID',
+`dtEventTime` datetime COMMENT '记录时间, 格式 YYYY-MM-DD HH:MM:SS',
+`iWorldId` int(11) COMMENT '游戏大区ID',
+`iUin` varchar(60) COMMENT '用户ID',
+`iRoleId` bigint(20) COMMENT '角色ID',
+`vSN` varchar(64) COMMENT '流水号',
+`ts` int(11) COMMENT '充值时间',
+`iPayDelta` int(11) COMMENT '充值金额',
+`iNewCash` bigint(20) COMMENT '元宝余量',
+`vSubType` varchar(64) COMMENT '子类型',
+`iLoginWay` int(11) COMMENT '登录渠道'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+2018-12-01 20:15:06 [main] DEBUG main.LogParser - tryCreateLogDb createTableSql:CREATE TABLE IF NOT EXISTS `CreateRole` (
+`iEventId` varchar(60) COMMENT '游戏事件ID',
+`iWorldId` int(11) COMMENT '游戏大区ID',
+`iUin` varchar(60) COMMENT '用户ID',
+`dtEventTime` datetime COMMENT '记录时间, 格式 YYYY-MM-DD HH:MM:SS',
+`iRoleId` bigint(20) COMMENT '角色ID',
+`vClientIp` varchar(16) COMMENT '客户端所在ip',
+`vRoleName` varchar(20) COMMENT '角色名',
+`iJobId` tinyint(11) COMMENT '角色职业',
+`iLoginWay` int(11) COMMENT '登录渠道'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+2018-12-01 20:15:06 [main] DEBUG main.LogParser - tryCreateLogDb createTableSql:CREATE TABLE IF NOT EXISTS `GoodsFlow` (
+`iEventId` varchar(60) COMMENT '操作ID',
+`iWorldId` int(11) COMMENT '游戏大区ID',
+`iUin` varchar(60) COMMENT '用户ID',
+`dtEventTime` datetime COMMENT '记录时间, 格式 YYYY-MM-DD HH:MM:SS',
+`iRoleId` bigint(20) COMMENT '角色ID',
+`vRoleName` varchar(60) COMMENT '角色名',
+`vOperate` varchar(60) COMMENT '操作类型',
+`iGoodsId` int(11) COMMENT '物品id',
+`vGoodsName` varchar(60) COMMENT '物品名字',
+`iCount` int(11) COMMENT '个数',
+`iTotalCount` int(11) COMMENT '动作后的道具总个数',
+`iIdentifier` int(11) COMMENT '标识 1是得到，2是失去'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+2018-12-01 20:15:06 [main] DEBUG main.LogParser - LogParser System.currentTimeMillis() - startTime:567
+2018-12-01 20:15:24 [main] DEBUG main.LogParser - LogParser configDbName:dbbhsconf,logDbName:dbbhsyylog
+2018-12-01 20:15:24 [main] DEBUG main.LogParser - LogParser count:3,endTime:20181201201524937
+2018-12-01 20:15:25 [main] DEBUG main.LogParser - loadPlatInfoFromDb sql:select * from tbplt where vPname = 'yy'
+2018-12-01 20:15:25 [main] DEBUG main.LogParser - loadPlatInfoFromDb resultSet:com.mysql.jdbc.JDBC4ResultSet@36ebc363
+2018-12-01 20:15:25 [main] DEBUG main.LogParser - loadPlatInfoFromDb next:true
+2018-12-01 20:15:25 [main] DEBUG main.LogParser - loadPlatInfoFromDb platId:1
+2018-12-01 20:15:25 [main] DEBUG main.LogParser - LogParser platFolder.getPath():D:\workspace\Log2Db\1
+2018-12-01 20:15:25 [main] DEBUG main.LogParser - startParser :没有文件需要处理
+2018-12-01 20:15:25 [main] DEBUG main.LogParser - LogParser System.currentTimeMillis() - startTime:342
+2018-12-01 23:38:52 [main] DEBUG main.LogParser - LogParser configDbName:dbbhsconf,logDbName:dbbhsyylog
+2018-12-01 23:38:52 [main] DEBUG main.LogParser - LogParser count:3,endTime:20181201233852237
+2018-12-01 23:38:52 [main] DEBUG main.LogParser - loadPlatInfoFromDb sql:select * from tbplt where vPname = 'yy'
+2018-12-01 23:38:52 [main] DEBUG main.LogParser - loadPlatInfoFromDb resultSet:com.mysql.jdbc.JDBC4ResultSet@36ebc363
+2018-12-01 23:38:52 [main] DEBUG main.LogParser - loadPlatInfoFromDb next:true
+2018-12-01 23:38:52 [main] DEBUG main.LogParser - loadPlatInfoFromDb platId:1
+2018-12-01 23:38:52 [main] DEBUG main.LogParser - LogParser platFolder.getPath():D:\workspace\Log2Db\1
+2018-12-01 23:38:52 [main] DEBUG main.LogParser - startParser :没有文件需要处理
+2018-12-01 23:38:52 [main] DEBUG main.LogParser - LogParser System.currentTimeMillis() - startTime:344
+2018-12-01 23:57:15 [main] DEBUG main.LogParser - LogParser configDbName:dbbhsconf,logDbName:dbbhsyylog
+2018-12-01 23:57:15 [main] DEBUG main.LogParser - LogParser count:3,endTime:20181201235715007
+2018-12-01 23:57:15 [main] DEBUG main.LogParser - loadPlatInfoFromDb sql:select * from tbplt where vPname = 'yy'
+2018-12-01 23:57:15 [main] DEBUG main.LogParser - loadPlatInfoFromDb resultSet:com.mysql.jdbc.JDBC4ResultSet@36ebc363
+2018-12-01 23:57:15 [main] DEBUG main.LogParser - loadPlatInfoFromDb next:true
+2018-12-01 23:57:15 [main] DEBUG main.LogParser - loadPlatInfoFromDb platId:1
+2018-12-01 23:57:15 [main] DEBUG main.LogParser - LogParser platFolder.getPath():D:\workspace\Log2Db\1
+2018-12-01 23:57:15 [main] DEBUG main.LogParser - tryCreateLogDb createTableSql:CREATE TABLE IF NOT EXISTS `Shop` (
+`iEventId` varchar(60) COMMENT '游戏事件ID',
+`iWorldId` int(11) COMMENT '游戏大区ID',
+`iUin` varchar(60) COMMENT '用户ID',
+`dtEventTime` datetime COMMENT '记录时间, 格式 YYYY-MM-DD HH:MM:SS',
+`iRoleId` bigint(20) COMMENT '角色ID',
+`vClientIp` varchar(16) COMMENT '客户端所在ip',
+`vRoleName` varchar(20) COMMENT '角色名',
+`iJobId` tinyint(11) COMMENT '角色职业',
+`iCost` bigint(20) COMMENT '支付消耗',
+`iShopType` tinyint(11) COMMENT '商店类型，消费类型 1为各种商店购买，2为其他消费如元宝一键扫荡等',
+`iGoodsType` int(11) COMMENT '商品类型',
+`iGoodsId` int(11) COMMENT '物品ID',
+`iGoodsNum` int(11) COMMENT '物品数量',
+`vGuid` varchar(60) COMMENT '全局唯一标识(暂时没用,空着)',
+`iLoginWay` int(11) COMMENT '登录渠道',
+`iNewCash` bigint(20) COMMENT '钻石余量'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+2018-12-01 23:57:15 [main] DEBUG main.LogParser - tryCreateLogDb createTableSql:CREATE TABLE IF NOT EXISTS `RoleLogout` (
+`iEventId` varchar(60) COMMENT '游戏事件ID',
+`iWorldId` int(11) COMMENT '游戏大区ID',
+`iUin` varchar(60) COMMENT '用户ID',
+`dtEventTime` datetime COMMENT '记录时间, 格式 YYYY-MM-DD HH:MM:SS',
+`dtLoginTime` datetime COMMENT '登录时间, 格式 YYYY-MM-DD HH:MM:SS',
+`iRoleId` bigint(20) COMMENT '角色ID',
+`vClientIp` varchar(16) COMMENT '客户端所在ip',
+`dtCreateTime` datetime COMMENT '角色创建的时间',
+`iOnlineTime` int(11) COMMENT '本次登录在线时间',
+`iOnlineTotalTime` int(11) COMMENT '角色总在线时长',
+`vRoleName` varchar(20) COMMENT '角色名',
+`iJobId` tinyint(11) COMMENT '角色职业',
+`iRoleLevel` int(11) COMMENT '角色等级',
+`iRoleExp` int(11) COMMENT '角色经验值',
+`iMoney` bigint(20) COMMENT '角色金币数',
+`iLijin` bigint(20) COMMENT '角色绑钻数量',
+`iGamePoints` bigint(20) COMMENT '角色钻石数量',
+`iLoginWay` int(11) COMMENT '登录渠道'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+2018-12-01 23:57:15 [main] DEBUG main.LogParser - tryCreateLogDb createTableSql:CREATE TABLE IF NOT EXISTS `MoneyFlow` (
+`iEventId` varchar(60) COMMENT '游戏事件ID',
+`iWorldId` int(11) COMMENT '游戏大区ID',
+`iUin` varchar(60) COMMENT '用户ID',
+`dtEventTime` datetime COMMENT '记录时间, 格式 YYYY-MM-DD HH:MM:SS',
+`iRoleId` bigint(20) COMMENT '角色ID',
+`vRoleName` varchar(20) COMMENT '角色名',
+`iJobId` tinyint(11) COMMENT '角色职业',
+`iRoleLevel` int(11) COMMENT '角色等级',
+`iMoneyBeforer` bigint(20) COMMENT '动作前的金钱数',
+`iMoneyAfter` bigint(20) COMMENT '动作后的金钱数',
+`iMoney` bigint(20) COMMENT '动作涉及的金钱数',
+`iMoneyType` int(11) COMMENT '金钱的类型',
+`iAction` int(11) COMMENT '动作,发生原因'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+2018-12-01 23:57:15 [main] DEBUG main.LogParser - tryCreateLogDb createTableSql:CREATE TABLE IF NOT EXISTS `RoleLogin` (
+`iEventId` varchar(60) COMMENT '游戏事件ID',
+`iWorldId` int(11) COMMENT '游戏大区ID',
+`iUin` varchar(60) COMMENT '用户ID',
+`dtEventTime` datetime COMMENT '记录时间, 格式 YYYY-MM-DD HH:MM:SS',
+`iRoleId` bigint(20) COMMENT '角色ID',
+`vClientIp` varchar(16) COMMENT '客户端所在ip',
+`vRoleName` varchar(20) COMMENT '角色名',
+`iJobId` tinyint(11) COMMENT '角色职业',
+`iRoleLevel` int(11) COMMENT '角色等级',
+`iRoleExp` int(11) COMMENT '角色经验值',
+`iMoney` bigint(20) COMMENT '角色金币数',
+`iLijin` bigint(20) COMMENT '角色绑钻数量',
+`iGamePoints` bigint(20) COMMENT '角色钻石数量',
+`dtCreateTime` datetime COMMENT '角色创建的时间',
+`iOnlineTotalTime` int(11) COMMENT '角色总在线时长',
+`iLoginWay` int(11) COMMENT '登录渠道'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+2018-12-01 23:57:15 [main] DEBUG main.LogParser - tryCreateLogDb createTableSql:CREATE TABLE IF NOT EXISTS `RoleLevelUp` (
+`iEventId` varchar(60) COMMENT '游戏事件ID',
+`iWorldId` int(11) COMMENT '游戏大区ID',
+`iUin` varchar(60) COMMENT '用户ID',
+`dtEventTime` datetime COMMENT '记录时间, 格式 YYYY-MM-DD HH:MM:SS',
+`iRoleId` bigint(20) COMMENT '角色ID',
+`vClientIp` varchar(16) COMMENT '客户端所在ip',
+`vRoleName` varchar(20) COMMENT '角色名',
+`iJobId` tinyint(11) COMMENT '角色职业',
+`iRoleLevel` int(11) COMMENT '角色等级',
+`iRoleExp` int(11) COMMENT '角色经验值',
+`iMoney` bigint(20) COMMENT '角色金币数',
+`iLijin` bigint(20) COMMENT '角色绑钻数量',
+`iGamePoints` bigint(20) COMMENT '角色钻石数量',
+`dtCreateTime` datetime COMMENT '角色创建的时间',
+`iOnlineTotalTime` int(11) COMMENT '角色总在线时长',
+`iReason` int(11) COMMENT '升级原因',
+`iLoginWay` int(11) COMMENT '登录渠道'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+2018-12-01 23:57:15 [main] DEBUG main.LogParser - tryCreateLogDb createTableSql:CREATE TABLE IF NOT EXISTS `Recharge` (
+`iEventId` varchar(60) COMMENT '操作ID',
+`dtEventTime` datetime COMMENT '记录时间, 格式 YYYY-MM-DD HH:MM:SS',
+`iWorldId` int(11) COMMENT '游戏大区ID',
+`iUin` varchar(60) COMMENT '用户ID',
+`iRoleId` bigint(20) COMMENT '角色ID',
+`vSN` varchar(64) COMMENT '流水号',
+`ts` int(11) COMMENT '充值时间',
+`iPayDelta` int(11) COMMENT '充值金额',
+`iNewCash` bigint(20) COMMENT '元宝余量',
+`vSubType` varchar(64) COMMENT '子类型',
+`iLoginWay` int(11) COMMENT '登录渠道'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+2018-12-01 23:57:15 [main] DEBUG main.LogParser - tryCreateLogDb createTableSql:CREATE TABLE IF NOT EXISTS `CreateRole` (
+`iEventId` varchar(60) COMMENT '游戏事件ID',
+`iWorldId` int(11) COMMENT '游戏大区ID',
+`iUin` varchar(60) COMMENT '用户ID',
+`dtEventTime` datetime COMMENT '记录时间, 格式 YYYY-MM-DD HH:MM:SS',
+`iRoleId` bigint(20) COMMENT '角色ID',
+`vClientIp` varchar(16) COMMENT '客户端所在ip',
+`vRoleName` varchar(20) COMMENT '角色名',
+`iJobId` tinyint(11) COMMENT '角色职业',
+`iLoginWay` int(11) COMMENT '登录渠道'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+2018-12-01 23:57:15 [main] DEBUG main.LogParser - tryCreateLogDb createTableSql:CREATE TABLE IF NOT EXISTS `GoodsFlow` (
+`iEventId` varchar(60) COMMENT '操作ID',
+`iWorldId` int(11) COMMENT '游戏大区ID',
+`iUin` varchar(60) COMMENT '用户ID',
+`dtEventTime` datetime COMMENT '记录时间, 格式 YYYY-MM-DD HH:MM:SS',
+`iRoleId` bigint(20) COMMENT '角色ID',
+`vRoleName` varchar(60) COMMENT '角色名',
+`vOperate` varchar(60) COMMENT '操作类型',
+`iGoodsId` int(11) COMMENT '物品id',
+`vGoodsName` varchar(60) COMMENT '物品名字',
+`iCount` int(11) COMMENT '个数',
+`iTotalCount` int(11) COMMENT '动作后的道具总个数',
+`iIdentifier` int(11) COMMENT '标识 1是得到，2是失去'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

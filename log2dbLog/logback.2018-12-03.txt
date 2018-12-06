@@ -1,0 +1,189 @@
+2018-12-03 10:35:57 [main] DEBUG main.LogParser - LogParser configDbName:dbbhsconf,logDbName:dbbhsyylog
+2018-12-03 10:35:57 [main] DEBUG main.LogParser - LogParser count:3,endTime:20181203103557211
+2018-12-03 10:35:57 [main] DEBUG main.LogParser - loadPlatInfoFromDb sql:select * from tbplt where vPname = 'yy'
+2018-12-03 10:35:57 [main] DEBUG main.LogParser - loadPlatInfoFromDb resultSet:com.mysql.jdbc.JDBC4ResultSet@36ebc363
+2018-12-03 10:35:57 [main] DEBUG main.LogParser - loadPlatInfoFromDb next:true
+2018-12-03 10:35:57 [main] DEBUG main.LogParser - loadPlatInfoFromDb platId:1
+2018-12-03 10:35:57 [main] DEBUG main.LogParser - LogParser platFolder.getPath():D:\workspace\Log2Db\1
+2018-12-03 10:35:58 [main] DEBUG main.LogParser - LogParser 处理文件个数:43 耗时:990
+2018-12-03 11:27:12 [main] DEBUG main.LogParser - LogParser configDbName:dbbhsconf,logDbName:dbbhsyylog
+2018-12-03 11:27:31 [main] DEBUG main.LogParser - LogParser configDbName:dbbhsconf,logDbName:dbbhsyylog
+2018-12-03 11:27:48 [main] DEBUG main.LogParser - LogParser configDbName:dbbhsconf,logDbName:dbbhsyylog
+2018-12-03 11:28:04 [main] DEBUG main.LogParser - LogParser configDbName:dbbhsconf,logDbName:dbbhsyylog
+2018-12-03 11:28:25 [main] DEBUG main.LogParser - LogParser configDbName:dbbhsconf,logDbName:dbbhsyylog
+2018-12-03 11:30:04 [main] DEBUG main.LogParser - LogParser configDbName:dbbhsconf,logDbName:dbbhsyylog
+2018-12-03 11:30:16 [main] DEBUG main.LogParser - LogParser count:3,endTime:1543680000000
+2018-12-03 11:30:17 [main] DEBUG main.LogParser - loadPlatInfoFromDb sql:select * from tbplt where vPname = 'yy'
+2018-12-03 11:30:17 [main] DEBUG main.LogParser - loadPlatInfoFromDb resultSet:com.mysql.jdbc.JDBC4ResultSet@3eb25e1a
+2018-12-03 11:30:17 [main] DEBUG main.LogParser - loadPlatInfoFromDb next:true
+2018-12-03 11:30:17 [main] DEBUG main.LogParser - loadPlatInfoFromDb platId:1
+2018-12-03 11:30:20 [main] DEBUG main.LogParser - LogParser platFolder.getPath():D:\workspace\Log2Db\1
+2018-12-03 11:30:34 [main] DEBUG main.LogParser - startParser :没有文件需要处理
+2018-12-03 11:30:34 [main] DEBUG main.LogParser - LogParser 处理文件个数:0 耗时:29733
+2018-12-03 11:30:54 [main] DEBUG main.LogParser - LogParser configDbName:dbbhsconf,logDbName:dbbhsyylog
+2018-12-03 11:30:54 [main] DEBUG main.LogParser - LogParser count:3,endTime:1543680000000
+2018-12-03 11:30:54 [main] DEBUG main.LogParser - loadPlatInfoFromDb sql:select * from tbplt where vPname = 'yy'
+2018-12-03 11:30:54 [main] DEBUG main.LogParser - loadPlatInfoFromDb resultSet:com.mysql.jdbc.JDBC4ResultSet@3eb25e1a
+2018-12-03 11:30:54 [main] DEBUG main.LogParser - loadPlatInfoFromDb next:true
+2018-12-03 11:30:54 [main] DEBUG main.LogParser - loadPlatInfoFromDb platId:1
+2018-12-03 11:30:54 [main] DEBUG main.LogParser - LogParser platFolder.getPath():D:\workspace\Log2Db\1
+2018-12-03 11:30:54 [main] DEBUG main.LogParser - startParser :没有文件需要处理
+2018-12-03 11:30:54 [main] DEBUG main.LogParser - LogParser 处理文件个数:0 耗时:358
+2018-12-03 11:31:10 [main] DEBUG main.LogParser - LogParser configDbName:dbbhsconf,logDbName:dbbhsyylog
+2018-12-03 11:31:43 [main] DEBUG main.LogParser - LogParser count:3,endTime:1543680000000
+2018-12-03 11:31:43 [main] DEBUG main.LogParser - loadPlatInfoFromDb sql:select * from tbplt where vPname = 'yy'
+2018-12-03 11:31:43 [main] DEBUG main.LogParser - loadPlatInfoFromDb resultSet:com.mysql.jdbc.JDBC4ResultSet@3eb25e1a
+2018-12-03 11:31:43 [main] DEBUG main.LogParser - loadPlatInfoFromDb next:true
+2018-12-03 11:31:43 [main] DEBUG main.LogParser - loadPlatInfoFromDb platId:1
+2018-12-03 11:31:43 [main] DEBUG main.LogParser - LogParser platFolder.getPath():D:\workspace\Log2Db\1
+2018-12-03 11:36:28 [main] DEBUG main.LogParser - startParser :没有文件需要处理
+2018-12-03 11:36:28 [main] DEBUG main.LogParser - LogParser 处理文件个数:0 耗时:318131
+2018-12-03 11:36:31 [main] DEBUG main.LogParser - LogParser configDbName:dbbhsconf,logDbName:dbbhsyylog
+2018-12-03 11:36:36 [main] DEBUG main.LogParser - LogParser count:3,startDate:1535212800000,endDate:1543680000000
+2018-12-03 11:36:37 [main] DEBUG main.LogParser - loadPlatInfoFromDb sql:select * from tbplt where vPname = 'yy'
+2018-12-03 11:36:37 [main] DEBUG main.LogParser - loadPlatInfoFromDb resultSet:com.mysql.jdbc.JDBC4ResultSet@3eb25e1a
+2018-12-03 11:36:37 [main] DEBUG main.LogParser - loadPlatInfoFromDb next:true
+2018-12-03 11:36:37 [main] DEBUG main.LogParser - loadPlatInfoFromDb platId:1
+2018-12-03 11:36:48 [main] DEBUG main.LogParser - LogParser platFolder.getPath():D:\workspace\Log2Db\1
+2018-12-03 11:37:00 [main] DEBUG main.LogParser - LogParser 处理文件个数:43 耗时:29014
+2018-12-03 11:38:48 [main] DEBUG main.LogParser - LogParser configDbName:dbbhsconf,logDbName:dbbhsyylog
+2018-12-03 11:38:49 [main] DEBUG main.LogParser - LogParser count:3,startDate:1535212800000,endDate:1543680000000
+2018-12-03 11:38:49 [main] DEBUG main.LogParser - loadPlatInfoFromDb sql:select * from tbplt where vPname = 'yy'
+2018-12-03 11:38:49 [main] DEBUG main.LogParser - loadPlatInfoFromDb resultSet:com.mysql.jdbc.JDBC4ResultSet@3eb25e1a
+2018-12-03 11:38:49 [main] DEBUG main.LogParser - loadPlatInfoFromDb next:true
+2018-12-03 11:38:49 [main] DEBUG main.LogParser - loadPlatInfoFromDb platId:1
+2018-12-03 11:38:49 [main] DEBUG main.LogParser - LogParser platFolder.getPath():D:\workspace\Log2Db\1
+2018-12-03 11:38:49 [main] DEBUG main.LogParser - handParseResult deleteSql:delete from Shop where unix_timestamp(dtEventTime) > 1535212800000 and unix_timestamp(dtEventTime) <= 1543680000000
+2018-12-03 11:38:49 [main] DEBUG main.LogParser - handParseResult deleteSql:delete from RoleLogout where unix_timestamp(dtEventTime) > 1535212800000 and unix_timestamp(dtEventTime) <= 1543680000000
+2018-12-03 11:38:49 [main] DEBUG main.LogParser - handParseResult deleteSql:delete from MoneyFlow where unix_timestamp(dtEventTime) > 1535212800000 and unix_timestamp(dtEventTime) <= 1543680000000
+2018-12-03 11:38:49 [main] DEBUG main.LogParser - handParseResult deleteSql:delete from RoleLogin where unix_timestamp(dtEventTime) > 1535212800000 and unix_timestamp(dtEventTime) <= 1543680000000
+2018-12-03 11:38:49 [main] DEBUG main.LogParser - handParseResult deleteSql:delete from RoleLevelUp where unix_timestamp(dtEventTime) > 1535212800000 and unix_timestamp(dtEventTime) <= 1543680000000
+2018-12-03 11:38:49 [main] DEBUG main.LogParser - handParseResult deleteSql:delete from CreateRole where unix_timestamp(dtEventTime) > 1535212800000 and unix_timestamp(dtEventTime) <= 1543680000000
+2018-12-03 11:38:49 [main] DEBUG main.LogParser - handParseResult deleteSql:delete from GoodsFlow where unix_timestamp(dtEventTime) > 1535212800000 and unix_timestamp(dtEventTime) <= 1543680000000
+2018-12-03 11:38:49 [main] DEBUG main.LogParser - LogParser 处理文件个数:43 耗时:751
+2018-12-03 11:40:05 [main] DEBUG main.LogParser - LogParser configDbName:dbbhsconf,logDbName:dbbhsyylog
+2018-12-03 11:40:05 [main] DEBUG main.LogParser - LogParser count:3,startDate:1535212800000,endDate:1543680000000
+2018-12-03 11:40:05 [main] DEBUG main.LogParser - loadPlatInfoFromDb sql:select * from tbplt where vPname = 'yy'
+2018-12-03 11:40:05 [main] DEBUG main.LogParser - loadPlatInfoFromDb resultSet:com.mysql.jdbc.JDBC4ResultSet@3eb25e1a
+2018-12-03 11:40:05 [main] DEBUG main.LogParser - loadPlatInfoFromDb next:true
+2018-12-03 11:40:05 [main] DEBUG main.LogParser - loadPlatInfoFromDb platId:1
+2018-12-03 11:40:05 [main] DEBUG main.LogParser - LogParser platFolder.getPath():D:\workspace\Log2Db\1
+2018-12-03 11:40:29 [main] DEBUG main.LogParser - handParseResult deleteSql:delete from Shop where unix_timestamp(dtEventTime) > 1535212800000 and unix_timestamp(dtEventTime) <= 1543680000000
+2018-12-03 11:49:49 [main] DEBUG main.LogParser - handParseResult deleteSql:delete from RoleLogout where unix_timestamp(dtEventTime) > 1535212800000 and unix_timestamp(dtEventTime) <= 1543680000000
+2018-12-03 11:50:05 [main] DEBUG main.LogParser - LogParser configDbName:dbbhsconf,logDbName:dbbhsyylog
+2018-12-03 11:50:05 [main] DEBUG main.LogParser - LogParser count:3,startDate:1535212800000,endDate:1543680000000
+2018-12-03 11:50:05 [main] DEBUG main.LogParser - LogParser startTime,endTime:20180826000000000
+2018-12-03 11:50:05 [main] DEBUG main.LogParser - loadPlatInfoFromDb sql:select * from tbplt where vPname = 'yy'
+2018-12-03 11:50:05 [main] DEBUG main.LogParser - loadPlatInfoFromDb resultSet:com.mysql.jdbc.JDBC4ResultSet@3eb25e1a
+2018-12-03 11:50:05 [main] DEBUG main.LogParser - loadPlatInfoFromDb next:true
+2018-12-03 11:50:05 [main] DEBUG main.LogParser - loadPlatInfoFromDb platId:1
+2018-12-03 11:50:05 [main] DEBUG main.LogParser - LogParser platFolder.getPath():D:\workspace\Log2Db\1
+2018-12-03 11:50:05 [main] DEBUG main.LogParser - handParseResult deleteSql:delete from Shop where unix_timestamp(dtEventTime) > 1535212800000 and unix_timestamp(dtEventTime) <= 1543680000000
+2018-12-03 11:50:05 [main] DEBUG main.LogParser - handParseResult deleteSql:delete from RoleLogout where unix_timestamp(dtEventTime) > 1535212800000 and unix_timestamp(dtEventTime) <= 1543680000000
+2018-12-03 11:50:05 [main] DEBUG main.LogParser - handParseResult deleteSql:delete from MoneyFlow where unix_timestamp(dtEventTime) > 1535212800000 and unix_timestamp(dtEventTime) <= 1543680000000
+2018-12-03 11:50:05 [main] DEBUG main.LogParser - handParseResult deleteSql:delete from RoleLogin where unix_timestamp(dtEventTime) > 1535212800000 and unix_timestamp(dtEventTime) <= 1543680000000
+2018-12-03 11:50:05 [main] DEBUG main.LogParser - handParseResult deleteSql:delete from RoleLevelUp where unix_timestamp(dtEventTime) > 1535212800000 and unix_timestamp(dtEventTime) <= 1543680000000
+2018-12-03 11:50:05 [main] DEBUG main.LogParser - handParseResult deleteSql:delete from CreateRole where unix_timestamp(dtEventTime) > 1535212800000 and unix_timestamp(dtEventTime) <= 1543680000000
+2018-12-03 11:50:05 [main] DEBUG main.LogParser - handParseResult deleteSql:delete from GoodsFlow where unix_timestamp(dtEventTime) > 1535212800000 and unix_timestamp(dtEventTime) <= 1543680000000
+2018-12-03 11:50:06 [main] DEBUG main.LogParser - LogParser 处理文件个数:43 耗时:822
+2018-12-03 12:15:31 [main] DEBUG main.LogParser - LogParser configDbName:dbbhsconf,logDbName:dbbhsyylog
+2018-12-03 12:15:31 [main] DEBUG main.LogParser - LogParser count:3,startDate:1535212800000,endDate:1543680000000
+2018-12-03 12:15:31 [main] DEBUG main.LogParser - LogParser startTime:20180826000000000,endTime:20181202000000000
+2018-12-03 12:15:31 [main] DEBUG main.LogParser - loadPlatInfoFromDb sql:select * from tbplt where vPname = 'yy'
+2018-12-03 12:15:31 [main] DEBUG main.LogParser - loadPlatInfoFromDb resultSet:com.mysql.jdbc.JDBC4ResultSet@3eb25e1a
+2018-12-03 12:15:31 [main] DEBUG main.LogParser - loadPlatInfoFromDb next:true
+2018-12-03 12:15:31 [main] DEBUG main.LogParser - loadPlatInfoFromDb platId:1
+2018-12-03 12:15:31 [main] DEBUG main.LogParser - LogParser platFolder.getPath():D:\workspace\Log2Db\1
+2018-12-03 12:15:32 [main] DEBUG main.LogParser - handParseResult deleteSql:delete from Shop where unix_timestamp(dtEventTime) > 1535212800000 and unix_timestamp(dtEventTime) <= 1543680000000
+2018-12-03 12:15:32 [main] DEBUG main.LogParser - handParseResult deleteSql:delete from RoleLogout where unix_timestamp(dtEventTime) > 1535212800000 and unix_timestamp(dtEventTime) <= 1543680000000
+2018-12-03 12:15:32 [main] DEBUG main.LogParser - handParseResult deleteSql:delete from MoneyFlow where unix_timestamp(dtEventTime) > 1535212800000 and unix_timestamp(dtEventTime) <= 1543680000000
+2018-12-03 12:15:32 [main] DEBUG main.LogParser - handParseResult deleteSql:delete from RoleLogin where unix_timestamp(dtEventTime) > 1535212800000 and unix_timestamp(dtEventTime) <= 1543680000000
+2018-12-03 12:15:32 [main] DEBUG main.LogParser - handParseResult deleteSql:delete from RoleLevelUp where unix_timestamp(dtEventTime) > 1535212800000 and unix_timestamp(dtEventTime) <= 1543680000000
+2018-12-03 12:15:32 [main] DEBUG main.LogParser - handParseResult deleteSql:delete from CreateRole where unix_timestamp(dtEventTime) > 1535212800000 and unix_timestamp(dtEventTime) <= 1543680000000
+2018-12-03 12:15:32 [main] DEBUG main.LogParser - handParseResult deleteSql:delete from GoodsFlow where unix_timestamp(dtEventTime) > 1535212800000 and unix_timestamp(dtEventTime) <= 1543680000000
+2018-12-03 12:15:32 [main] DEBUG main.LogParser - LogParser 处理文件个数:43 耗时:786
+2018-12-03 12:21:00 [main] DEBUG main.LogParser - LogParser configDbName:dbbhsconf,logDbName:dbbhsyylog
+2018-12-03 12:21:00 [main] DEBUG main.LogParser - LogParser count:3,startDate:1535212800000,endDate:1543680000000
+2018-12-03 12:21:00 [main] DEBUG main.LogParser - LogParser startTime:20180826000000000,endTime:20181202000000000
+2018-12-03 12:21:00 [main] DEBUG main.LogParser - loadPlatInfoFromDb sql:select * from tbplt where vPname = 'yy'
+2018-12-03 12:21:00 [main] DEBUG main.LogParser - loadPlatInfoFromDb resultSet:com.mysql.jdbc.JDBC4ResultSet@3eb25e1a
+2018-12-03 12:21:00 [main] DEBUG main.LogParser - loadPlatInfoFromDb next:true
+2018-12-03 12:21:00 [main] DEBUG main.LogParser - loadPlatInfoFromDb platId:1
+2018-12-03 12:21:00 [main] DEBUG main.LogParser - LogParser platFolder.getPath():D:\workspace\Log2Db\1
+2018-12-03 12:21:01 [main] DEBUG main.LogParser - handParseResult deleteSql:delete from Shop where unix_timestamp(dtEventTime) > 1535212800 and unix_timestamp(dtEventTime) <= 1543680000
+2018-12-03 12:21:01 [main] DEBUG main.LogParser - handParseResult deleteSql:delete from RoleLogout where unix_timestamp(dtEventTime) > 1535212800 and unix_timestamp(dtEventTime) <= 1543680000
+2018-12-03 12:21:01 [main] DEBUG main.LogParser - handParseResult deleteSql:delete from MoneyFlow where unix_timestamp(dtEventTime) > 1535212800 and unix_timestamp(dtEventTime) <= 1543680000
+2018-12-03 12:21:01 [main] DEBUG main.LogParser - handParseResult deleteSql:delete from RoleLogin where unix_timestamp(dtEventTime) > 1535212800 and unix_timestamp(dtEventTime) <= 1543680000
+2018-12-03 12:21:01 [main] DEBUG main.LogParser - handParseResult deleteSql:delete from RoleLevelUp where unix_timestamp(dtEventTime) > 1535212800 and unix_timestamp(dtEventTime) <= 1543680000
+2018-12-03 12:21:01 [main] DEBUG main.LogParser - handParseResult deleteSql:delete from CreateRole where unix_timestamp(dtEventTime) > 1535212800 and unix_timestamp(dtEventTime) <= 1543680000
+2018-12-03 12:21:01 [main] DEBUG main.LogParser - handParseResult deleteSql:delete from GoodsFlow where unix_timestamp(dtEventTime) > 1535212800 and unix_timestamp(dtEventTime) <= 1543680000
+2018-12-03 12:21:01 [main] DEBUG main.LogParser - LogParser 处理文件个数:43 耗时:776
+2018-12-03 14:10:27 [main] DEBUG main.LogParser - LogParser configDbName:dbbhsconf,logDbName:dbbhsyylog
+2018-12-03 14:10:27 [main] DEBUG main.LogParser - LogParser count:3,startDate:1535212800000,endDate:1543680000000
+2018-12-03 14:10:27 [main] DEBUG main.LogParser - LogParser startTime:20180826000000000,endTime:20181202000000000
+2018-12-03 14:10:28 [main] DEBUG main.LogParser - loadPlatInfoFromDb sql:select * from tbplt where vPname = 'yy'
+2018-12-03 14:10:28 [main] DEBUG main.LogParser - loadPlatInfoFromDb resultSet:com.mysql.jdbc.JDBC4ResultSet@3eb25e1a
+2018-12-03 14:10:28 [main] DEBUG main.LogParser - loadPlatInfoFromDb next:true
+2018-12-03 14:10:28 [main] DEBUG main.LogParser - loadPlatInfoFromDb platId:1
+2018-12-03 14:10:28 [main] DEBUG main.LogParser - LogParser platFolder.getPath():D:\workspace\Log2Db\1
+2018-12-03 14:10:28 [main] DEBUG main.LogParser - handParseResult deleteSql:delete from Shop where unix_timestamp(dtEventTime) > 1535212800 and unix_timestamp(dtEventTime) <= 1543680000
+2018-12-03 14:10:28 [main] DEBUG main.LogParser - handParseResult deleteSql:delete from RoleLogout where unix_timestamp(dtEventTime) > 1535212800 and unix_timestamp(dtEventTime) <= 1543680000
+2018-12-03 14:10:28 [main] DEBUG main.LogParser - handParseResult deleteSql:delete from MoneyFlow where unix_timestamp(dtEventTime) > 1535212800 and unix_timestamp(dtEventTime) <= 1543680000
+2018-12-03 14:10:28 [main] DEBUG main.LogParser - handParseResult deleteSql:delete from RoleLogin where unix_timestamp(dtEventTime) > 1535212800 and unix_timestamp(dtEventTime) <= 1543680000
+2018-12-03 14:10:28 [main] DEBUG main.LogParser - handParseResult deleteSql:delete from RoleLevelUp where unix_timestamp(dtEventTime) > 1535212800 and unix_timestamp(dtEventTime) <= 1543680000
+2018-12-03 14:10:28 [main] DEBUG main.LogParser - handParseResult deleteSql:delete from CreateRole where unix_timestamp(dtEventTime) > 1535212800 and unix_timestamp(dtEventTime) <= 1543680000
+2018-12-03 14:10:28 [main] DEBUG main.LogParser - handParseResult deleteSql:delete from GoodsFlow where unix_timestamp(dtEventTime) > 1535212800 and unix_timestamp(dtEventTime) <= 1543680000
+2018-12-03 14:10:28 [main] DEBUG main.LogParser - LogParser 处理文件个数:43 耗时:789
+2018-12-03 14:10:41 [main] DEBUG main.LogParser - LogParser configDbName:dbbhsconf,logDbName:dbbhsyylog
+2018-12-03 14:10:41 [main] DEBUG main.LogParser - LogParser count:3,startDate:1526572800000,endDate:1543680000000
+2018-12-03 14:10:41 [main] DEBUG main.LogParser - LogParser startTime:20180518000000000,endTime:20181202000000000
+2018-12-03 14:10:41 [main] DEBUG main.LogParser - loadPlatInfoFromDb sql:select * from tbplt where vPname = 'yy'
+2018-12-03 14:10:41 [main] DEBUG main.LogParser - loadPlatInfoFromDb resultSet:com.mysql.jdbc.JDBC4ResultSet@3eb25e1a
+2018-12-03 14:10:41 [main] DEBUG main.LogParser - loadPlatInfoFromDb next:true
+2018-12-03 14:10:41 [main] DEBUG main.LogParser - loadPlatInfoFromDb platId:1
+2018-12-03 14:10:41 [main] DEBUG main.LogParser - LogParser platFolder.getPath():D:\workspace\Log2Db\1
+2018-12-03 14:10:41 [main] DEBUG main.LogParser - handParseResult deleteSql:delete from Shop where unix_timestamp(dtEventTime) > 1526572800 and unix_timestamp(dtEventTime) <= 1543680000
+2018-12-03 14:10:41 [main] DEBUG main.LogParser - handParseResult deleteSql:delete from RoleLogout where unix_timestamp(dtEventTime) > 1526572800 and unix_timestamp(dtEventTime) <= 1543680000
+2018-12-03 14:10:41 [main] DEBUG main.LogParser - handParseResult deleteSql:delete from MoneyFlow where unix_timestamp(dtEventTime) > 1526572800 and unix_timestamp(dtEventTime) <= 1543680000
+2018-12-03 14:10:41 [main] DEBUG main.LogParser - handParseResult deleteSql:delete from RoleLogin where unix_timestamp(dtEventTime) > 1526572800 and unix_timestamp(dtEventTime) <= 1543680000
+2018-12-03 14:10:41 [main] DEBUG main.LogParser - handParseResult deleteSql:delete from RoleLevelUp where unix_timestamp(dtEventTime) > 1526572800 and unix_timestamp(dtEventTime) <= 1543680000
+2018-12-03 14:10:41 [main] DEBUG main.LogParser - handParseResult deleteSql:delete from CreateRole where unix_timestamp(dtEventTime) > 1526572800 and unix_timestamp(dtEventTime) <= 1543680000
+2018-12-03 14:10:41 [main] DEBUG main.LogParser - handParseResult deleteSql:delete from GoodsFlow where unix_timestamp(dtEventTime) > 1526572800 and unix_timestamp(dtEventTime) <= 1543680000
+2018-12-03 14:10:42 [main] DEBUG main.LogParser - LogParser 处理文件个数:43 耗时:868
+2018-12-03 14:11:01 [main] DEBUG main.LogParser - LogParser configDbName:dbbhsconf,logDbName:dbbhsyylog
+2018-12-03 14:11:01 [main] DEBUG main.LogParser - LogParser count:3,startDate:1543766400000,endDate:1543852800000
+2018-12-03 14:11:01 [main] DEBUG main.LogParser - LogParser startTime:20181203000000000,endTime:20181204000000000
+2018-12-03 14:11:02 [main] DEBUG main.LogParser - loadPlatInfoFromDb sql:select * from tbplt where vPname = 'yy'
+2018-12-03 14:11:02 [main] DEBUG main.LogParser - loadPlatInfoFromDb resultSet:com.mysql.jdbc.JDBC4ResultSet@3eb25e1a
+2018-12-03 14:11:02 [main] DEBUG main.LogParser - loadPlatInfoFromDb next:true
+2018-12-03 14:11:02 [main] DEBUG main.LogParser - loadPlatInfoFromDb platId:1
+2018-12-03 14:11:02 [main] DEBUG main.LogParser - LogParser platFolder.getPath():D:\workspace\Log2Db\1
+2018-12-03 14:11:02 [main] DEBUG main.LogParser - startParser :没有文件需要处理
+2018-12-03 14:11:02 [main] DEBUG main.LogParser - LogParser 处理文件个数:0 耗时:347
+2018-12-03 14:11:28 [main] DEBUG main.LogParser - LogParser configDbName:dbbhsconf,logDbName:dbbhsyylog
+2018-12-03 14:11:28 [main] DEBUG main.LogParser - LogParser count:3,startDate:1543766400000,endDate:1543852800000
+2018-12-03 14:11:28 [main] DEBUG main.LogParser - LogParser startTime:20181203000000000,endTime:20181204000000000
+2018-12-03 14:11:29 [main] DEBUG main.LogParser - loadPlatInfoFromDb sql:select * from tbplt where vPname = 'yy'
+2018-12-03 14:11:29 [main] DEBUG main.LogParser - loadPlatInfoFromDb resultSet:com.mysql.jdbc.JDBC4ResultSet@3eb25e1a
+2018-12-03 14:11:29 [main] DEBUG main.LogParser - loadPlatInfoFromDb next:true
+2018-12-03 14:11:29 [main] DEBUG main.LogParser - loadPlatInfoFromDb platId:1
+2018-12-03 14:11:29 [main] DEBUG main.LogParser - LogParser platFolder.getPath():D:\workspace\Log2Db\1
+2018-12-03 14:11:29 [main] DEBUG main.LogParser - startParser :没有文件需要处理
+2018-12-03 14:11:29 [main] DEBUG main.LogParser - LogParser 处理文件个数:0 耗时:392
+2018-12-03 14:15:01 [main] DEBUG main.LogParser - LogParser configDbName:dbbhsconf,logDbName:dbbhsyylog
+2018-12-03 14:15:01 [main] DEBUG main.LogParser - LogParser count:3,startDate:1543766400000,endDate:1543852800000
+2018-12-03 14:15:01 [main] DEBUG main.LogParser - LogParser startTime:20181203000000000,endTime:20181204000000000
+2018-12-03 14:15:01 [main] DEBUG main.LogParser - loadPlatInfoFromDb sql:select * from tbplt where vPname = 'yy'
+2018-12-03 14:15:01 [main] DEBUG main.LogParser - loadPlatInfoFromDb platId:1
+2018-12-03 14:15:01 [main] DEBUG main.LogParser - LogParser platFolder.getPath():D:\workspace\Log2Db\1
+2018-12-03 14:15:01 [main] DEBUG main.LogParser - startParser :没有文件需要处理
+2018-12-03 14:15:01 [main] DEBUG main.LogParser - LogParser 处理文件个数:0 耗时:366
+2018-12-03 14:29:32 [main] DEBUG main.LogParser - LogParser configDbName:dbbhsconf,logDbName:dbbhsyylog
+2018-12-03 14:29:32 [main] DEBUG main.LogParser - LogParser TimeUtils.printTime(startDate):18-12-03 00:00:00
+2018-12-03 14:29:32 [main] DEBUG main.LogParser - LogParser TimeUtils.printTime(endDate):18-12-04 00:00:00
+2018-12-03 14:29:32 [main] DEBUG main.LogParser - LogParser startTime:20181203000000000,endTime:20181204000000000
+2018-12-03 14:29:32 [main] DEBUG main.LogParser - loadPlatInfoFromDb sql:select * from tbplt where vPname = 'yy'
+2018-12-03 14:29:32 [main] DEBUG main.LogParser - loadPlatInfoFromDb platId:1
+2018-12-03 14:29:32 [main] DEBUG main.LogParser - LogParser platFolder.getPath():D:\workspace\Log2Db\1
+2018-12-03 14:29:32 [main] DEBUG main.LogParser - startParser :没有文件需要处理
+2018-12-03 14:29:32 [main] DEBUG main.LogParser - LogParser 处理文件个数:0 耗时:440
