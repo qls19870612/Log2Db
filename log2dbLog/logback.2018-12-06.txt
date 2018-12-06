@@ -4944,3 +4944,69 @@
 2018-12-06 11:28:35 [main] DEBUG main.LogParser - prepareParserList b:false
 2018-12-06 11:28:35 [main] DEBUG main.LogParser - LogParser logFileParser.logFile.getPath():C:\Users\Administrator\Documents\svr_log\1\svr_1_1_20181206094000277.log
 2018-12-06 11:28:35 [main] DEBUG main.LogParser - LogParser 处理文件个数:0,入库文件个数:1, 耗时:572
+2018-12-06 18:04:51 [main] DEBUG main.LogParser - LogParser configDbName:dbbhsconf,logDbName:dbbhsyylog
+2018-12-06 18:04:51 [main] DEBUG main.LogParser - LogParser TimeUtils.printTime(startDate):18-12-06 00:00:00
+2018-12-06 18:04:51 [main] DEBUG main.LogParser - LogParser TimeUtils.printTime(endDate):18-12-07 00:00:00
+2018-12-06 18:04:52 [main] DEBUG main.LogParser - loadPlatInfoFromDb platId:1
+2018-12-06 18:04:52 [main] DEBUG main.LogParser - LogParser platFolder.getPath():D:\workspace\svr_log\1
+2018-12-06 18:04:52 [Thread-7] DEBUG main.LogParser - handParseResult sqls.size():2,fileCount:2,totalCount:0
+2018-12-06 18:04:52 [Thread-5] DEBUG main.LogParser - handParseResult sqls.size():1,fileCount:1,totalCount:0
+2018-12-06 18:04:52 [Thread-4] DEBUG main.LogParser - handParseResult sqls.size():1,fileCount:1,totalCount:0
+2018-12-06 18:04:52 [Thread-7] DEBUG main.LogParser - handParseResult logFileParser.fileName:svr_1_1_20181206175644274.log
+2018-12-06 18:04:52 [Thread-5] DEBUG main.LogParser - handParseResult logFileParser.fileName:svr_1_1_20181206174624985.log
+2018-12-06 18:04:52 [Thread-4] DEBUG main.LogParser - handParseResult logFileParser.fileName:svr_1_1_20181206175553109.log
+2018-12-06 18:04:52 [main] DEBUG main.LogParser - LogParser logFileParser.logFile.getPath():D:\workspace\svr_log\1\svr_1_1_20181206171502223.log
+2018-12-06 18:04:52 [main] DEBUG main.LogParser - LogParser logFileParser.logFile.getPath():D:\workspace\svr_log\1\svr_1_1_20181206172716703.log
+2018-12-06 18:04:52 [main] DEBUG main.LogParser - LogParser logFileParser.logFile.getPath():D:\workspace\svr_log\1\svr_1_1_20181206173001720.log
+2018-12-06 18:04:52 [main] DEBUG main.LogParser - LogParser logFileParser.logFile.getPath():D:\workspace\svr_log\1\svr_1_1_20181206173500897.log
+2018-12-06 18:04:52 [main] DEBUG main.LogParser - LogParser logFileParser.logFile.getPath():D:\workspace\svr_log\1\svr_1_1_20181206174000897.log
+2018-12-06 18:04:52 [main] DEBUG main.LogParser - LogParser logFileParser.logFile.getPath():D:\workspace\svr_log\1\svr_1_1_20181206174624985.log
+2018-12-06 18:04:52 [main] DEBUG main.LogParser - LogParser logFileParser.logFile.getPath():D:\workspace\svr_log\1\svr_1_1_20181206175553109.log
+2018-12-06 18:04:52 [main] DEBUG main.LogParser - LogParser logFileParser.logFile.getPath():D:\workspace\svr_log\1\svr_1_1_20181206175644274.log
+2018-12-06 18:04:52 [main] DEBUG main.LogParser - LogParser 处理文件个数:8,入库文件个数:5, 耗时:567
+2018-12-06 18:06:04 [main] DEBUG main.LogParser - LogParser configDbName:dbbhsconf,logDbName:dbbhsyylog
+2018-12-06 18:06:04 [main] DEBUG main.LogParser - LogParser TimeUtils.printTime(startDate):18-12-06 00:00:00
+2018-12-06 18:06:04 [main] DEBUG main.LogParser - LogParser TimeUtils.printTime(endDate):18-12-07 00:00:00
+2018-12-06 18:06:05 [main] DEBUG main.LogParser - loadPlatInfoFromDb platId:1
+2018-12-06 18:06:05 [main] DEBUG main.LogParser - LogParser platFolder.getPath():D:\workspace\svr_log\1
+2018-12-06 18:06:13 [Thread-6] DEBUG main.LogParser - handParseResult sqls.size():1,fileCount:1,totalCount:0
+2018-12-06 18:09:09 [Thread-6] DEBUG main.LogParser - handParseResult logFileParser.fileName:svr_1_1_20181206175553109.log
+2018-12-06 18:09:09 [Thread-3] DEBUG main.LogParser - handParseResult sqls.size():1,fileCount:1,totalCount:0
+2018-12-06 18:09:09 [Thread-3] DEBUG main.LogParser - handParseResult logFileParser.fileName:svr_1_1_20181206174624985.log
+2018-12-06 18:09:09 [Thread-7] DEBUG main.LogParser - handParseResult sqls.size():1,fileCount:1,totalCount:0
+2018-12-06 18:09:09 [Thread-9] DEBUG main.LogParser - handParseResult sqls.size():1,fileCount:3,totalCount:0
+2018-12-06 18:09:09 [Thread-5] DEBUG main.LogParser - handParseResult sqls.size():1,fileCount:15,totalCount:0
+2018-12-06 18:09:12 [main] DEBUG main.LogParser - LogParser configDbName:dbbhsconf,logDbName:dbbhsyylog
+2018-12-06 18:09:12 [main] DEBUG main.LogParser - LogParser TimeUtils.printTime(startDate):18-12-06 00:00:00
+2018-12-06 18:09:12 [main] DEBUG main.LogParser - LogParser TimeUtils.printTime(endDate):18-12-07 00:00:00
+2018-12-06 18:09:13 [main] DEBUG main.LogParser - loadPlatInfoFromDb platId:1
+2018-12-06 18:09:13 [main] DEBUG main.LogParser - LogParser platFolder.getPath():D:\workspace\svr_log\1
+2018-12-06 18:09:21 [Thread-8] DEBUG main.LogParser - handParseResult sqls.size():2,fileCount:2,totalCount:0
+2018-12-06 18:09:21 [Thread-9] DEBUG main.LogParser - handParseResult sqls.size():1,fileCount:1,totalCount:0
+2018-12-06 18:09:21 [Thread-8] DEBUG main.LogParser - handParseResult logFileParser.fileName:svr_1_1_20181206175644274.log
+2018-12-06 18:09:21 [Thread-9] DEBUG main.LogParser - handParseResult logFileParser.fileName:svr_1_1_20181206175553109.log
+2018-12-06 18:13:49 [Thread-3] DEBUG main.LogParser - handParseResult sqls.size():1,fileCount:1,totalCount:0
+2018-12-06 18:13:49 [Thread-3] DEBUG main.LogParser - handParseResult logFileParser.fileName:svr_1_1_20181206174624985.log
+2018-12-06 18:13:50 [main] DEBUG main.LogParser - LogParser logFileParser.logFile.getPath():D:\workspace\svr_log\1\svr_1_1_20181206171502223.log
+2018-12-06 18:13:50 [main] DEBUG main.LogParser - LogParser logFileParser.logFile.getPath():D:\workspace\svr_log\1\svr_1_1_20181206172716703.log
+2018-12-06 18:13:50 [main] DEBUG main.LogParser - LogParser logFileParser.logFile.getPath():D:\workspace\svr_log\1\svr_1_1_20181206173001720.log
+2018-12-06 18:13:50 [main] DEBUG main.LogParser - LogParser logFileParser.logFile.getPath():D:\workspace\svr_log\1\svr_1_1_20181206173500897.log
+2018-12-06 18:13:50 [main] DEBUG main.LogParser - LogParser logFileParser.logFile.getPath():D:\workspace\svr_log\1\svr_1_1_20181206174000897.log
+2018-12-06 18:13:50 [main] DEBUG main.LogParser - LogParser logFileParser.logFile.getPath():D:\workspace\svr_log\1\svr_1_1_20181206174624985.log
+2018-12-06 18:13:50 [main] DEBUG main.LogParser - LogParser logFileParser.logFile.getPath():D:\workspace\svr_log\1\svr_1_1_20181206175553109.log
+2018-12-06 18:13:50 [main] DEBUG main.LogParser - LogParser logFileParser.logFile.getPath():D:\workspace\svr_log\1\svr_1_1_20181206175644274.log
+2018-12-06 18:13:50 [main] DEBUG main.LogParser - LogParser 处理文件个数:8,入库文件个数:5, 耗时:277464
+2018-12-06 18:16:45 [main] DEBUG main.LogParser - LogParser configDbName:dbbhsconf,logDbName:dbbhsyylog
+2018-12-06 18:16:46 [main] DEBUG main.LogParser - LogParser TimeUtils.printTime(startDate):18-12-06 00:00:00
+2018-12-06 18:16:46 [main] DEBUG main.LogParser - LogParser TimeUtils.printTime(endDate):18-12-07 00:00:00
+2018-12-06 18:16:46 [main] DEBUG main.LogParser - loadPlatInfoFromDb platId:1
+2018-12-06 18:16:46 [main] DEBUG main.LogParser - LogParser platFolder.getPath():D:\workspace\svr_log\1
+2018-12-06 18:16:54 [main] DEBUG main.LogParser - LogParser logFileParser.logFile.getPath():D:\workspace\svr_log\1\svr_1_1_20181206171502223.log
+2018-12-06 18:16:54 [main] DEBUG main.LogParser - LogParser logFileParser.logFile.getPath():D:\workspace\svr_log\1\svr_1_1_20181206172716703.log
+2018-12-06 18:16:54 [main] DEBUG main.LogParser - LogParser logFileParser.logFile.getPath():D:\workspace\svr_log\1\svr_1_1_20181206173001720.log
+2018-12-06 18:16:54 [main] DEBUG main.LogParser - LogParser logFileParser.logFile.getPath():D:\workspace\svr_log\1\svr_1_1_20181206173500897.log
+2018-12-06 18:16:54 [main] DEBUG main.LogParser - LogParser logFileParser.logFile.getPath():D:\workspace\svr_log\1\svr_1_1_20181206174000897.log
+2018-12-06 18:16:54 [main] DEBUG main.LogParser - LogParser logFileParser.logFile.getPath():D:\workspace\svr_log\1\svr_1_1_20181206174624985.log
+2018-12-06 18:16:54 [main] DEBUG main.LogParser - LogParser logFileParser.logFile.getPath():D:\workspace\svr_log\1\svr_1_1_20181206175553109.log
+2018-12-06 18:16:54 [main] DEBUG main.LogParser - LogParser logFileParser.logFile.getPath():D:\workspace\svr_log\1\svr_1_1_20181206175644274.log
+2018-12-06 18:16:54 [main] DEBUG main.LogParser - LogParser 处理文件个数:8,入库文件个数:8, 耗时:8838

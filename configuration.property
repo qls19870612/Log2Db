@@ -3,5 +3,5 @@ db_user=root
 db_passwd=123456
 #1:true 其它 false
 check_add_table=1
-logs_dir=C:/Users/Administrator/Documents/svr_log
-use_cache=1
+logs_dir=D:/workspace/svr_log
+use_cache=0

@@ -93,6 +93,8 @@
 		<entry name="iWorldId"			type="uint"		index="1"		desc="游戏大区ID"							/>
 		<entry name="iUin"				type="string"	size="60"		desc="用户ID"								/>
 		<entry name="iRoleId"			type="bigint"	index="1"		desc="角色ID"								/>
+		<entry name="vRoleName"			type="string"	size="20"		desc="角色名"								/>
+		<entry name="iRoleLevel"		type="uint"		size=""			desc="角色等级"								/>
 		<entry name="vSN"				type="string"	size="64"		desc="流水号"								/>
 		<entry name="ts"				type="uint"		size=""			desc="充值时间"								/>
 		<entry name="iPayDelta"			type="uint"		size=""			desc="充值金额"								/>
