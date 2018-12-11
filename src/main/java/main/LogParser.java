@@ -133,7 +133,7 @@ public class LogParser {
             Preconditions.checkArgument(day > 20180000 && day < 20380000, "%s果是6位数，取值范围需要 startDay > 20180000&& startDay < 20380000", who);
             date = DAY.parseDateTime(dayStr).getMillis();
         } else {
-            Preconditions.checkArgument(day <= 1, "如果%s<6个字符时，必需是<=0", who);
+            Preconditions.checkArgument(day <= 365, "如果%s<6个字符时，必需是<=365", who);
             Date d = new Date(currDate);
             Date d2 = new Date(d.getYear(), d.getMonth(), d.getDate());
 
