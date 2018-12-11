@@ -3,13 +3,18 @@ package main;
 import com.google.common.base.Preconditions;
 import com.google.common.io.Files;
 
+import com.lmax.disruptor.BlockingWaitStrategy;
+import com.lmax.disruptor.IgnoreExceptionHandler;
+import com.lmax.disruptor.RingBuffer;
+import com.lmax.disruptor.WorkerPool;
+import com.lmax.disruptor.dsl.ProducerType;
+
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
-import java.io.FileFilter;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.charset.Charset;
@@ -27,6 +32,8 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -50,7 +57,7 @@ public class LogParser {
     private static final Logger logger = LoggerFactory.getLogger(LogParser.class);
     public static final DateTimeFormatter MILLIS = DateTimeFormat.forPattern("yyyyMMddHHmmssSSS");
 
-    private final PlatInfo platInfo;
+    public final PlatInfo platInfo;
     private final ConfigProperty properties;
     private final String logDbName;
     private final Long startTime;
@@ -60,9 +67,9 @@ public class LogParser {
 
     private HashMap<String, HandlerLogInfo> fileProcessorMap = new HashMap<>();//key:文件名 value:解析日期
     private TomcatJdbcPool logDbPool;
-    private XmlTemplateParser xmlTemplateParser;
+    public XmlTemplateParser xmlTemplateParser;
     private final File platFolder;
-    private AtomicInteger totalHandlerFileCount = new AtomicInteger(0);
+
     private AtomicInteger totalSuccessHandlerFileCount = new AtomicInteger(0);
     public static final DateTimeFormatter DAY = DateTimeFormat.forPattern("yyyyMMdd");
 
@@ -72,6 +79,11 @@ public class LogParser {
     public long endDate;
     private ThreadPoolExecutor threadPoolExecutor;
     int threadCount = Runtime.getRuntime().availableProcessors() * 2;
+
+    private RingBuffer<LogEvent> ringBuffer;
+    private HandlerLogInfo[] handlerLogInfos;
+    private WorkerPool<LogEvent> workerPool;
+
 
     public LogParser(String[] args, ConfigProperty properties) throws Exception {
         this.properties = properties;
@@ -86,6 +98,7 @@ public class LogParser {
         configDbName = "db" + gameName + "conf";
         logDbName = "db" + gameName + platName + "log";
         logger.debug("LogParser configDbName:{},logDbName:{}", configDbName, logDbName);
+
 
         if (args.length > count) {
 
@@ -116,13 +129,90 @@ public class LogParser {
             throw new RuntimeException("平台对应的目录不存在!");
         }
         parserParserHistoryConfig(platFolder);
+
+        xmlTemplateParser = new XmlTemplateParser();
+
+        tryCreateLogDb(xmlTemplateParser);
+
+
         ArrayList<LogFileParser> logFileParsers = prepareParserList(platFolder);
-        startParser(logFileParsers);
-        for (LogFileParser logFileParser : logFileParsers) {
-            logger.debug("LogParser logFileParser.logFile.getPath():{}", logFileParser.logFile.getPath());
-        }
-        logger.debug("LogParser 处理文件个数:{},入库文件个数:{}, 耗时:{}", totalHandlerFileCount.get(), totalSuccessHandlerFileCount.get(),
+        //        ArrayList<LogFileParser> logFileParsers = new ArrayList<>();
+        //        logFileParsers.add(new LogFileParser(1, new File("C:\\Users\\Administrator\\Documents\\svr_log\\1\\svr_1_1_20181208140000277.log")));
+        startParserByDisruptor(logFileParsers);
+
+        //        startParser(logFileParsers);
+        //        for (LogFileParser logFileParser : logFileParsers) {
+        //            logger.debug("LogParser logFileParser.logFile.getPath():{}", logFileParser.logFile.getPath());
+        //        }
+        logger.debug("LogParser 处理文件个数:{},入库文件个数:{}, 耗时:{}", logFileParsers.size(), totalSuccessHandlerFileCount.get(),
                 System.currentTimeMillis() - runStartTime);
+    }
+
+    private void startParserByDisruptor(ArrayList<LogFileParser> logFileParsers) throws Exception {
+        CountDownLatch countDownLatch = new CountDownLatch(logFileParsers.size());
+        ExecutorService executor = initDisruptor(countDownLatch);
+        prepareToDb();
+        handlerLogInfos = new HandlerLogInfo[logFileParsers.size()];
+        for (LogFileParser logFileParser : logFileParsers) {
+            long next = ringBuffer.next();
+            LogEvent logEvent = ringBuffer.get(next);
+            logEvent.logFileParser = logFileParser;
+            ringBuffer.publish(next);
+        }
+        countDownLatch.await();
+        logDbPool.close();
+        writeParseHistory(handlerLogInfos);
+        workerPool.halt();
+        executor.shutdown();
+
+    }
+
+    private void writeParseHistory(HandlerLogInfo[] handlerLogInfos) throws Exception {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (HandlerLogInfo handlerLogInfo : handlerLogInfos) {
+            if (handlerLogInfo == null) {
+                break;
+            }
+            stringBuilder.append(handlerLogInfo.fileName);
+            stringBuilder.append("=");
+            stringBuilder.append(handlerLogInfo.handlerTime);
+            stringBuilder.append(NEW_LINE);
+        }
+        RandomAccessFile randomAccessFile = new RandomAccessFile(new File(getPlatLogFile()), "rw");
+        if (properties.useCache) {
+            randomAccessFile.seek(randomAccessFile.length());
+        } else {
+            randomAccessFile.seek(0);
+        }
+        randomAccessFile.seek(randomAccessFile.length());
+        randomAccessFile.write(stringBuilder.toString().getBytes("UTF-8"));
+
+        randomAccessFile.close();
+    }
+
+
+    private void prepareToDb() throws Exception {
+        createLogDbPool();
+
+
+        if (!properties.useCache) {
+            long startDateMs = startDate / 1000;
+            long endDateMs = endDate / 1000;
+            //不使用缓存的时候，要先把日志库内，指定日期的的数据删除后，再添加 ，防止重复添加
+            Connection connection = logDbPool.getConnection();
+            for (TableStruct tableStruct : xmlTemplateParser.tableStructHashMap.values()) {
+                String conditions =
+                        tableStruct.tableName + " where unix_timestamp(dtEventTime) > " + startDateMs + " and unix_timestamp(dtEventTime) <= " +
+                                endDateMs;
+                String deleteSql = "delete from " + conditions;
+                //                logger.debug("handParseResult deleteSql:{}", deleteSql);
+                Statement statement = connection.createStatement();
+                statement.execute(deleteSql);
+                statement.close();
+            }
+
+
+        }
     }
 
     private long getDay(String dayStr, String who) {
@@ -180,11 +270,8 @@ public class LogParser {
                 }
             };
             BlockingQueue<Runnable> queue = new LinkedBlockingQueue<Runnable>();
-            xmlTemplateParser = new XmlTemplateParser();
 
-            tryCreateLogDb(xmlTemplateParser);
 
-            //            int threadCount = 1;
             threadPoolExecutor = new ThreadPoolExecutor(threadCount, threadCount, 60L, TimeUnit.MINUTES, queue, threadFactor);
             int len = logFileParsers.size();
 
@@ -206,7 +293,6 @@ public class LogParser {
                         for (LogFileParser logFileParser : handList) {
                             try {
                                 logFileParser.parser(xmlTemplateParser, platInfo);
-                                totalHandlerFileCount.incrementAndGet();
                             } catch (IOException e) {
                                 logger.debug("解析出错: logFileParser.logFile.getPath():{}", logFileParser.logFile.getPath());
                                 logger.debug("Error e:{}", e);
@@ -223,6 +309,29 @@ public class LogParser {
         } else {
             logger.debug("startParser :没有文件需要处理");
         }
+    }
+
+    private ExecutorService initDisruptor(CountDownLatch countDownLatch) {
+        logger.debug("initDisructor threadCount:{}", threadCount);
+
+        AtomicInteger threadNum = new AtomicInteger(0);
+        ExecutorService exector = Executors.newFixedThreadPool(threadCount, r -> {
+            int count = threadNum.incrementAndGet();
+            return new Thread(r, "logthread:" + count);
+        });
+
+        ringBuffer = RingBuffer.create(ProducerType.MULTI, LogEvent.FACTORY, 1024, new BlockingWaitStrategy());
+        Consumer[] consumers = new Consumer[threadCount];
+        int iLen = consumers.length;
+        for (int i = 0; i < iLen; i++) {
+            consumers[i] = new Consumer(countDownLatch, this);
+        }
+        workerPool = new WorkerPool<LogEvent>(ringBuffer, ringBuffer.newBarrier(), new IgnoreExceptionHandler(), consumers);
+        workerPool.start(exector);
+
+        return exector;
+
+
     }
 
 
@@ -347,8 +456,6 @@ public class LogParser {
                         Connection connection = logDbPool.getConnection();
                         connection.setAutoCommit(false);
 
-                        //                        StringBuilder stringBuilder = new StringBuilder();
-                        //                        Statement statement = connection.createStatement();
                         int totalCount = 0;
                         int fileCount = 0;
                         int tableCount = 0;
@@ -361,15 +468,6 @@ public class LogParser {
                                     TableStruct tableStruct = xmlTemplateParser.getTableStruct(stringStringBuilderEntry.getKey());
                                     PreparedStatement preparedStatement = connection.prepareStatement(tableStruct.prepareSql);
 
-                                    //                                    logger.debug("handParseResult sqls.size():{}", sqls.size());
-
-
-                                    //                                    statement.clearBatch();
-                                    //                                    for (String sql : sqls) {
-                                    //                                        statement.addBatch(sql);
-                                    //                                    }
-                                    //                                    statement.executeBatch();
-                                    //                                    connection.commit();
                                     fileCount += sqls.size();
                                     for (String sql : sqls) {
                                         String[] split = sql.split("\\|");
@@ -397,10 +495,8 @@ public class LogParser {
 
 
                         }
-                        //                        statement.close();
 
                     } catch (Exception e) {
-                        //                        logger.error("run e.getMessage():{}", e.getMessage());
                         e.printStackTrace();
                     }
                     latch.countDown();
@@ -412,8 +508,6 @@ public class LogParser {
         logDbPool.close();
         writeParseHistory(parseLog);
 
-        //                logDbPool.close();
-
 
     }
 
@@ -421,6 +515,10 @@ public class LogParser {
 
         StringBuilder stringBuilder = new StringBuilder();
         for (HandlerLogInfo handlerLogInfo : processMap) {
+            if (handlerLogInfo == null) {
+                logger.debug("writeParseHistory :{}", processMap);
+                break;
+            }
             stringBuilder.append(handlerLogInfo.fileName);
             stringBuilder.append("=");
             stringBuilder.append(handlerLogInfo.handlerTime);
@@ -460,11 +558,7 @@ public class LogParser {
     }
 
     private ArrayList<LogFileParser> prepareParserList(File platFolder) {
-        File[] logFiles = platFolder.listFiles(new FileFilter() {
-            public boolean accept(File pathname) {
-                return pathname.getName().endsWith(".log");
-            }
-        });
+        File[] logFiles = platFolder.listFiles(pathname -> pathname.getName().endsWith(".log"));
 
         ArrayList<LogFileParser> needProcessFiles = new ArrayList<LogFileParser>();
         assert logFiles != null;
@@ -474,11 +568,55 @@ public class LogParser {
             boolean b = fileProcessorMap.containsKey(logFile.getName().toLowerCase());
             if (time >= startTime && time < endTime && !b) {
                 int serverId = Integer.parseInt(split[split.length - 2]);
-                needProcessFiles.add(new LogFileParser(serverId, time, logFile));
+                needProcessFiles.add(new LogFileParser(serverId, logFile));
 
             }
         }
         return needProcessFiles;
+
+
+    }
+
+    public void logToDb(LogFileParser logFileParser) throws SQLException {
+        Connection connection = logDbPool.getConnection();
+        connection.setAutoCommit(false);
+
+
+        int tableCount = 0;
+
+        try {
+
+            for (Entry<String, ArrayList<String>> stringStringBuilderEntry : logFileParser.tableSqlMap.entrySet()) {
+                ArrayList<String> sqls = stringStringBuilderEntry.getValue();
+                tableCount = sqls.size();
+                TableStruct tableStruct = xmlTemplateParser.getTableStruct(stringStringBuilderEntry.getKey());
+                PreparedStatement preparedStatement = connection.prepareStatement(tableStruct.prepareSql);
+
+
+                for (String sql : sqls) {
+                    String[] split = sql.split("\\|");
+                    int c = 1;
+                    for (String s : split) {
+                        preparedStatement.setString(c++, s);
+                    }
+                    preparedStatement.addBatch();
+                }
+                preparedStatement.executeBatch();
+                connection.commit();
+                preparedStatement.close();
+            }
+            int count = totalSuccessHandlerFileCount.getAndIncrement();
+            handlerLogInfos[count] = new HandlerLogInfo(logFileParser.logFile.getName(), new Date().getTime());
+
+        } catch (Exception e) {
+            logger.debug("handParseResult totalCount:{}", tableCount);
+            e.printStackTrace();
+            connection.rollback();
+            //                                logger.debug("handParseResult stringBuilder.toString():{}", stringBuilder.toString());
+            logger.debug("handParseResult logFileParser.fileName:{}", logFileParser.logFile.getName());
+        } finally {
+            connection.close();
+        }
 
 
     }

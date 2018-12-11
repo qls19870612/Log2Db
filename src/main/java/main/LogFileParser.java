@@ -22,15 +22,14 @@ import infos.PlatInfo;
  */
 public class LogFileParser {
     private final int serverId;
-    private final long time;
     public final File logFile;
     private static final Logger logger = LoggerFactory.getLogger(LogFileParser.class);
     public final HashMap<String, ArrayList<String>> tableSqlMap = new HashMap<>();
 
-    public LogFileParser(int serverId, long time, File logFile) {
+    public LogFileParser(int serverId, File logFile) {
 
         this.serverId = serverId;
-        this.time = time;
+
         this.logFile = logFile;
     }
 
@@ -67,5 +66,9 @@ public class LogFileParser {
 
     public ArrayList<String> getTableSqls(String tableName) {
         return tableSqlMap.get(tableName);
+    }
+
+    public void dispose() {
+        tableSqlMap.clear();
     }
 }
