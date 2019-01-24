@@ -16,7 +16,7 @@ SEVERDIR=/home/javas
 FILE=Log2Db.jar
 
 #lftp -u ${USER},${PASSWORD} sftp://${IP}:${PORT} <<EOF
-curl -v --insecure sftp://${USER}:${PASSWORD}@192.168.1.99
+curl -v --insecure sftp://${USER}:${PASSWORD}@134.175.127.247
 cd ${SEVERDIR}/
 lcd ${CLIENTDIR}
 put ${FILE}

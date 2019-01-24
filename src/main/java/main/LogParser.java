@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.charset.Charset;
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -29,6 +30,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.CountDownLatch;
@@ -44,6 +46,7 @@ import config.ConfigProperty;
 import db.TomcatJdbcPool;
 import infos.HandlerLogInfo;
 import infos.PlatInfo;
+import infos.TableField;
 import infos.TableStruct;
 import utils.TimeUtils;
 
@@ -133,7 +136,7 @@ public class LogParser {
         xmlTemplateParser = new XmlTemplateParser();
 
         tryCreateLogDb(xmlTemplateParser);
-
+ 
 
         ArrayList<LogFileParser> logFileParsers = prepareParserList(platFolder);
         //        ArrayList<LogFileParser> logFileParsers = new ArrayList<>();
@@ -369,20 +372,107 @@ public class LogParser {
             createLogDbPool();
             connection = logDbPool.getConnection();
             statement = connection.createStatement();
+
+            HashMap<String, TableStruct> dbStruct = getTableField(connection);
+            StringBuilder alertSql = new StringBuilder();
             for (Entry<String, TableStruct> entry : xmlTemplateParser.tableStructHashMap.entrySet()) {
                 try {
-                    String createTableSql = entry.getValue().getCreateTableSql();
-                    //                    logger.debug("tryCreateLogDb createTableSql:{}", createTableSql);
-                    statement.execute(createTableSql);
+                    TableStruct xmlTableStruct = entry.getValue();
+                    String createTableSql = xmlTableStruct.getCreateTableSql();
+
+                    if (!statement.execute(createTableSql)) {//没成功，代表已经有表，检查表结构
+
+
+                        String tableName = entry.getKey();
+                        TableStruct dbTableStruct = dbStruct.get(tableName);
+                        Map<String, TableField> dbTableFields = dbTableStruct.getFieldMap();
+                        Map<String, TableField> xmlTableFileds = xmlTableStruct.getFieldMap();
+                        alertSql.setLength(0);
+                        for (Entry<String, TableField> tf : xmlTableFileds.entrySet()) {
+                            String fieldName = tf.getKey();
+                            TableField xmlTableField = tf.getValue();
+                            if (dbTableFields.containsKey(fieldName)) {
+                                if (!dbTableFields.get(fieldName).equals(xmlTableField)) {
+                                    logger.debug("tryCreateLogDb tf.getValue():{}, dbTableFields.get(tf.getKey()):{}", xmlTableField,
+                                            dbTableFields.get(fieldName));
+                                    alertSql.append("alter table ");
+                                    alertSql.append(tableName);
+                                    alertSql.append(" change ");
+                                    alertSql.append(xmlTableField.fieldName);
+                                    alertSql.append(' ');
+                                    alertSql.append(xmlTableField.fieldName);
+                                    alertSql.append(' ');
+                                    TableStruct.appendFiledTypeAndComment(alertSql, xmlTableField);
+                                    alertSql.append(';');
+                                }
+
+                            } else {
+                                logger.debug("tryCreateLogDb tf.getKey():{}", fieldName);
+                                alertSql.append("alter table ");
+                                alertSql.append(tableName);
+                                alertSql.append(" add ");
+                                alertSql.append(xmlTableField.fieldName);
+                                alertSql.append(' ');
+                                TableStruct.appendFiledTypeAndComment(alertSql, xmlTableField);
+                                alertSql.append(';');
+
+                            }
+                        }
+                        if (alertSql.length() > 0) {
+                            logger.debug("tryCreateLogDb alertSql.toString():{}", alertSql.toString());
+                            int update = statement.executeUpdate(alertSql.toString());
+                            logger.debug("tryCreateLogDb update:{}", update);
+                        }
+
+
+                    }
+
+
                 } catch (Exception e) {
                     logger.debug("tryCreateLogDb e:{}", e);
                 }
             }
+
+
             statement.close();
             connection.close();
         }
 
 
+    }
+
+    private HashMap<String, TableStruct> getTableField(Connection logDbCon) throws Exception {
+
+        HashMap<String, TableStruct> ret = new HashMap<>();
+        DatabaseMetaData metaData = logDbCon.getMetaData();
+        ResultSet tableRet = metaData.getTables(null, "%", "%", new String[]{"TABLE"});
+        /*其中"%"就是表示*的意思，也就是任意所有的意思。其中m_TableName就是要获取的数据表的名字，如果想获取所有的表的名字，就可以使用"%"来作为参数了。*/
+
+        //3. 提取表的名字。
+        ArrayList<TableField> fields = new ArrayList();
+        while (tableRet.next()) {
+
+            String table_name = tableRet.getString("TABLE_NAME");
+
+
+            String columnName;
+            String columnType;
+            ResultSet colRet = metaData.getColumns(null, "%", table_name, "%");
+            fields.clear();
+            while (colRet.next()) {
+                columnName = colRet.getString("COLUMN_NAME");
+                columnType = colRet.getString("TYPE_NAME");
+                int dataSize = colRet.getInt("COLUMN_SIZE");
+                String remarks = colRet.getString("REMARKS");
+
+                fields.add(new TableField(columnName, columnType, dataSize, remarks));
+            }
+            TableField[] tableFields = fields.toArray(TableField.EMPTY);
+            TableStruct tableStruct = new TableStruct(table_name, tableFields);
+            ret.put(table_name, tableStruct);
+        }
+        tableRet.close();
+        return ret;
     }
 
     private Connection getConnection(String url, String user, String password) {
@@ -463,18 +553,21 @@ public class LogParser {
                             try {
                                 fileCount = 0;
                                 for (Entry<String, ArrayList<String>> stringStringBuilderEntry : logFileParser.tableSqlMap.entrySet()) {
-                                    ArrayList<String> sqls = stringStringBuilderEntry.getValue();
-                                    tableCount = sqls.size();
+                                    ArrayList<String> logItems = stringStringBuilderEntry.getValue();
+                                    tableCount = logItems.size();
                                     TableStruct tableStruct = xmlTemplateParser.getTableStruct(stringStringBuilderEntry.getKey());
                                     PreparedStatement preparedStatement = connection.prepareStatement(tableStruct.prepareSql);
 
-                                    fileCount += sqls.size();
-                                    for (String sql : sqls) {
-                                        String[] split = sql.split("\\|");
+                                    fileCount += logItems.size();
+                                    for (String fieldStrs : logItems) {
+                                        String[] fields = fieldStrs.split("\\|");
                                         int c = 1;
-                                        for (String s : split) {
-                                            preparedStatement.setString(c++, s);
+                                        for (String filed : fields) {
+                                            preparedStatement.setString(c++, filed);
                                         }
+
+                                        String dt = fields[tableStruct.dtEventTimeIndex].split(" ")[0];
+                                        preparedStatement.setString(c, dt);
                                         preparedStatement.addBatch();
                                     }
                                     preparedStatement.executeBatch();
@@ -587,18 +680,20 @@ public class LogParser {
         try {
 
             for (Entry<String, ArrayList<String>> stringStringBuilderEntry : logFileParser.tableSqlMap.entrySet()) {
-                ArrayList<String> sqls = stringStringBuilderEntry.getValue();
-                tableCount = sqls.size();
+                ArrayList<String> logItems = stringStringBuilderEntry.getValue();
+                tableCount = logItems.size();
                 TableStruct tableStruct = xmlTemplateParser.getTableStruct(stringStringBuilderEntry.getKey());
                 PreparedStatement preparedStatement = connection.prepareStatement(tableStruct.prepareSql);
 
 
-                for (String sql : sqls) {
-                    String[] split = sql.split("\\|");
+                for (String sql : logItems) {
+                    String[] fields = sql.split("\\|");
                     int c = 1;
-                    for (String s : split) {
-                        preparedStatement.setString(c++, s);
+                    for (String field : fields) {
+                        preparedStatement.setString(c++, field);
                     }
+                    String dt = fields[tableStruct.dtEventTimeIndex].split(" ")[0];
+                    preparedStatement.setString(c, dt);
                     preparedStatement.addBatch();
                 }
                 preparedStatement.executeBatch();

@@ -123,7 +123,7 @@
         <entry name="vGuid" type="string" size="60" desc="全局唯一标识(暂时没用,空着)"/>
         <entry name="iLoginWay" type="uint" size="" desc="登录渠道"/>
         <entry name="iNewCash" type="bigint" size="" desc="钻石余量"/>
-
+        <entry name="vOperate" type="string" size="60" desc="操作类型"/>
     </struct>
 
     <!--现金流日志 -->

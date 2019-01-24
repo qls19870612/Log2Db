@@ -1,0 +1,12 @@
+2018-12-24 14:05:51 [main] DEBUG main.LogParser - LogParser configDbName:dbdiabloconf,logDbName:dbdiabloyylog
+2018-12-24 14:05:51 [main] DEBUG main.LogParser - LogParser TimeUtils.printTime(startDate):18-11-24 00:00:00
+2018-12-24 14:05:51 [main] DEBUG main.LogParser - LogParser TimeUtils.printTime(endDate):18-12-25 00:00:00
+2018-12-24 14:05:51 [main] DEBUG main.LogParser - loadPlatInfoFromDb :没有找到
+2018-12-24 14:05:51 [main] DEBUG main.LogParser - LogParser platFolder.getPath():C:\Users\Administrator\Documents\svr_log\0
+2018-12-24 14:06:06 [main] DEBUG main.LogParser - LogParser configDbName:dbdiabloconf,logDbName:dbdiablomuzhilog
+2018-12-24 14:06:06 [main] DEBUG main.LogParser - LogParser TimeUtils.printTime(startDate):18-11-24 00:00:00
+2018-12-24 14:06:06 [main] DEBUG main.LogParser - LogParser TimeUtils.printTime(endDate):18-12-25 00:00:00
+2018-12-24 14:06:06 [main] DEBUG main.LogParser - loadPlatInfoFromDb platId:1
+2018-12-24 14:06:06 [main] DEBUG main.LogParser - LogParser platFolder.getPath():C:\Users\Administrator\Documents\svr_log\1
+2018-12-24 14:06:07 [main] DEBUG main.LogParser - initDisructor threadCount:8
+2018-12-24 14:06:10 [main] DEBUG main.LogParser - LogParser 处理文件个数:452,入库文件个数:452, 耗时:3801

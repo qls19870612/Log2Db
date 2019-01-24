@@ -1,0 +1,10 @@
+2019-01-24 17:34:57 [main] DEBUG main.LogParser - LogParser configDbName:dbdiabloconf,logDbName:dbdiablomuzhilog
+2019-01-24 17:34:58 [main] DEBUG main.LogParser - LogParser TimeUtils.printTime(startDate):18-12-25 00:00:00
+2019-01-24 17:34:58 [main] DEBUG main.LogParser - LogParser TimeUtils.printTime(endDate):19-01-25 00:00:00
+2019-01-24 17:34:58 [main] DEBUG main.LogParser - loadPlatInfoFromDb platId:1
+2019-01-24 17:34:58 [main] DEBUG main.LogParser - LogParser platFolder.getPath():C:\Users\Administrator\Documents\svr_log\1
+2019-01-24 17:34:58 [main] DEBUG main.LogParser - tryCreateLogDb tf.getKey():vOperate
+2019-01-24 17:34:58 [main] DEBUG main.LogParser - tryCreateLogDb alertSql.toString():alter table shop add vOperate varchar(60) COMMENT '操作类型';
+2019-01-24 17:34:58 [main] DEBUG main.LogParser - tryCreateLogDb update:4
+2019-01-24 17:34:59 [main] DEBUG main.LogParser - initDisructor threadCount:8
+2019-01-24 17:34:59 [main] DEBUG main.LogParser - LogParser 处理文件个数:23,入库文件个数:23, 耗时:1400

@@ -10,7 +10,7 @@
 		<entry name="vClientIp"			type="string"	size="16"		desc="客户端所在ip"						/>
 		<entry name="vRoleName"			type="string"	size="20"		desc="角色名"								/>
 		<entry name="iJobId"			type="utinyint"	size=""			desc="角色职业"								/>
-		
+
 		<entry name="iRoleLevel"		type="uint"		size=""			desc="角色等级"								/>
 		<entry name="iRoleExp"			type="uint"		size=""			desc="角色经验值"							/>
 		<entry name="iMoney"			type="bigint"		size=""			desc="角色金币数"						/>
@@ -18,7 +18,7 @@
 		<entry name="iGamePoints"		type="bigint"		size=""			desc="角色钻石数量"						/>
 		<entry name="dtCreateTime"		type="datetime"	size=""			desc="角色创建的时间"						/>
 		<entry name="iOnlineTotalTime"	type="uint"		size=""			desc="角色总在线时长"						/>
-		
+
 		<entry name="iLoginWay"			type="uint"		size=""			desc="登录渠道"								/>
 
 	</struct>
@@ -36,7 +36,7 @@
 		<entry name="iOnlineTotalTime"	type="uint"		size=""			desc="角色总在线时长"						/>
 		<entry name="vRoleName"			type="string"	size="20"		desc="角色名"								/>
 		<entry name="iJobId"			type="utinyint"	size=""			desc="角色职业"								/>
-		
+
 		<entry name="iRoleLevel"		type="uint"		size=""			desc="角色等级"								/>
 		<entry name="iRoleExp"			type="uint"		size=""			desc="角色经验值"							/>
 		<entry name="iMoney"			type="bigint"		size=""			desc="角色金币数"						/>
@@ -46,7 +46,7 @@
 		<entry name="iLoginWay"			type="uint"		size=""			desc="登录渠道"								/>
 
 	</struct>
-	
+
 	<!-- 创建角色 -->
 	<struct name="CreateRole"			id=""							desc="创建角色"								dont_use_special_arg="DONT">
 		<entry name="iEventId"			type="string"	size="60"		desc="游戏事件ID"							/>
@@ -57,7 +57,7 @@
 		<entry name="vClientIp"			type="string"	size="16"		desc="客户端所在ip"						/>
 		<entry name="vRoleName"			type="string"	size="20"		desc="角色名"								/>
 		<entry name="iJobId"			type="utinyint"	size=""			desc="角色职业"								/>
-		
+
 		<entry name="iLoginWay"			type="uint"		size=""			desc="登录渠道"								/>
 
 	</struct>
@@ -72,7 +72,7 @@
 		<entry name="vClientIp"			type="string"	size="16"		desc="客户端所在ip"						/>
 		<entry name="vRoleName"			type="string"	size="20"		desc="角色名"								/>
 		<entry name="iJobId"			type="utinyint"	size=""			desc="角色职业"								/>
-		
+
 		<entry name="iRoleLevel"		type="uint"		size=""			desc="角色等级"								/>
 		<entry name="iRoleExp"			type="uint"		size=""			desc="角色经验值"							/>
 		<entry name="iMoney"			type="bigint"		size=""			desc="角色金币数"						/>
@@ -81,7 +81,7 @@
 		<entry name="dtCreateTime"		type="datetime"	size=""			desc="角色创建的时间"						/>
 		<entry name="iOnlineTotalTime"	type="uint"		size=""			desc="角色总在线时长"						/>
 		<entry name="iReason"			type="uint"		size=""			desc="升级原因"								/>
-		
+
 		<entry name="iLoginWay"			type="uint"		size=""			desc="登录渠道"								/>
 
 	</struct>
@@ -99,9 +99,9 @@
 		<entry name="iNewCash"			type="bigint"		size=""			desc="元宝余量"								/>
 		<entry name="vSubType"			type="string"	size="64"		desc="子类型"								/>
 		<entry name="iLoginWay"			type="uint"		size=""			desc="登录渠道"								/>
-		
+
 	</struct>
-	
+
 	<!-- 充值钻石消费 -->
 	<struct name="Shop"					id=""							desc="充值钻石消费"						>
 		<entry name="iEventId"			type="string"	size="60"		desc="游戏事件ID"							/>
@@ -112,7 +112,7 @@
 		<entry name="vClientIp"			type="string"	size="16"		desc="客户端所在ip"							/>
 		<entry name="vRoleName"			type="string"	size="20"		desc="角色名"								/>
 		<entry name="iJobId"			type="utinyint"	size=""			desc="角色职业"								/>
-		
+
 		<entry name="iCost"				type="bigint"	size=""			desc="支付消耗"								/>
 		<entry name="iShopType"			type="utinyint"	size="1"		desc="商店类型，消费类型 1为各种商店购买，2为其他消费如元宝一键扫荡等"		/>
 		<entry name="iGoodsType"		type="uint"		size=""			desc="商品类型"								/>
@@ -121,9 +121,9 @@
 		<entry name="vGuid"				type="string"	size="60"		desc="全局唯一标识(暂时没用,空着)"			/>
 		<entry name="iLoginWay"			type="uint"		size=""			desc="登录渠道"								/>
 		<entry name="iNewCash"			type="bigint"	size=""			desc="钻石余量"								/>
-
+		<entry name="vOperate"			type="string"	size="60"		desc="操作类型"								/>
 	</struct>
-	
+
 	<!--现金流日志 -->
 	<struct name="MoneyFlow"			id=""							desc="现金流"							dont_use_special_arg="ALL">
 		<entry name="iEventId"			type="string"	size="60"		desc="游戏事件ID"							/>
@@ -140,7 +140,7 @@
 		<entry name="iMoneyType"		type="uint"		size=""			desc="金钱的类型"							/>
 		<entry name="iAction"			type="uint"		size=""			desc="动作,发生原因"						/>
 
-		
+
 	</struct>
 	<!-- 物品流向日志 -->
 		<struct name="GoodsFlow"		id=""						desc="物品流向日志"						>
@@ -150,7 +150,7 @@
 		<entry name="dtEventTime"		type="datetime"	size=""			desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"	/>
 		<entry name="iRoleId"			type="bigint"		index="1"		desc="角色ID"								/>
 		<entry name="vRoleName"			type="string"	size="60"		desc="角色名"								/>
-		<entry name="vOperate"			type="string"	size="60"		desc="操作类型"								/>		
+		<entry name="vOperate"			type="string"	size="60"		desc="操作类型"								/>
 		<entry name="iGoodsId"			type="uint"		index="1"		desc="物品id"								/>
 		<entry name="vGoodsName"		type="string"	size="60"		desc="物品名字"								/>
 		<entry name="iCount"			type="uint"		index="1"		desc="个数"									/>
