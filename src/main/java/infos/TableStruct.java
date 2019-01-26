@@ -156,16 +156,21 @@ public class TableStruct {
 
         stringBuilder.append(field.type);
         if (!field.isDate()) {
-
             stringBuilder.append('(');
             stringBuilder.append(field.size);
             stringBuilder.append(')');
         }
-        stringBuilder.append(' ');
 
-        stringBuilder.append("COMMENT '");
-        stringBuilder.append(field.desc);
-        stringBuilder.append("'");
+        stringBuilder.append(' ');
+        if (field.fieldName.toLowerCase().contains("name")) {
+            stringBuilder.append(" CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci' ");//如果有名字，必需设置字符集为utf8mb4
+        }
+        if (!StringUtils.isEmpty(field.desc)) {
+            stringBuilder.append("COMMENT '");
+
+            stringBuilder.append(field.desc);
+            stringBuilder.append("'");
+        }
 
     }
 }

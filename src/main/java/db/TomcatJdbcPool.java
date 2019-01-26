@@ -27,11 +27,14 @@ public class TomcatJdbcPool implements DBPool {
         this.password = password;
 
         PoolProperties p = new PoolProperties();
+        //        url = "jdbc:mysql://" + url +
+        //                "?rewriteBatchedStatements=true&cachePrepStmts=true&prepStmtCacheSize=100&autoReconnect=true&initialTimeout=1&failOverReadOnly=false&autoReconnectForPools=true&noAccessToProcedureBodies=true&useUnicode=true&characterEncoding=utf8";
         url = "jdbc:mysql://" + url +
-                "?rewriteBatchedStatements=true&cachePrepStmts=true&prepStmtCacheSize=100&autoReconnect=true&initialTimeout=1&failOverReadOnly=false&autoReconnectForPools=true&noAccessToProcedureBodies=true&useUnicode=true&characterEncoding=UTF-8";
-
+                "?rewriteBatchedStatements=true&cachePrepStmts=true&prepStmtCacheSize=100&autoReconnect=true&initialTimeout=1&failOverReadOnly=false&autoReconnectForPools=true&noAccessToProcedureBodies=true&useUnicode=true&characterEncoding=utf8";
+        //&allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
         p.setUrl(url);
-        p.setDriverClassName("com.mysql.jdbc.Driver");
+        p.setDriverClassName("com.mysql.cj.jdbc.Driver");
+        p.setInitSQL("set names utf8mb4");
         p.setUsername(username);
         p.setPassword(password);
         p.setJmxEnabled(false);
@@ -54,6 +57,7 @@ public class TomcatJdbcPool implements DBPool {
         p.setFairQueue(false);
 
         datasource = new DataSource(p);
+
     }
 
     @Override

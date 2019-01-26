@@ -23,6 +23,7 @@ public class Log2DBMain {
         properties.load(new FileInputStream(new File("configuration.property")));
         ConfigProperty configProperty = new ConfigProperty(properties);
         new LogParser(args, configProperty);
-      
+        
+
     }
 }

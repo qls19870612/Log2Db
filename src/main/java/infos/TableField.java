@@ -32,6 +32,7 @@ public class TableField {
             size = 0;
         }
         convertTypeAndSize();
+        type = type.toUpperCase();
         desc = attributes.getNamedItem("desc").getNodeValue();
     }
 
@@ -95,7 +96,14 @@ public class TableField {
             return false;
         }
         TableField that = (TableField) o;
-        return size == that.size && Objects.equals(fieldName, that.fieldName) && type.equalsIgnoreCase(that.type) && Objects.equals(desc, that.desc);
+        boolean b = Objects.equals(fieldName, that.fieldName) && type.equalsIgnoreCase(that.type) && Objects.equals(desc, that.desc);
+        if (!b) {
+            return false;
+        }
+        if (type.equalsIgnoreCase("DATETIME")) {
+            return true;
+        }
+        return size == that.size;
     }
 
     @Override

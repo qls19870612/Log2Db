@@ -136,11 +136,12 @@ public class LogParser {
         xmlTemplateParser = new XmlTemplateParser();
 
         tryCreateLogDb(xmlTemplateParser);
- 
+
 
         ArrayList<LogFileParser> logFileParsers = prepareParserList(platFolder);
+
         //        ArrayList<LogFileParser> logFileParsers = new ArrayList<>();
-        //        logFileParsers.add(new LogFileParser(1, new File("C:\\Users\\Administrator\\Documents\\svr_log\\1\\svr_1_1_20181208140000277.log")));
+        //        logFileParsers.add(new LogFileParser(1, new File("D:/workspace/Log2Db\\1\\svr_1_1_20190122184502445.log")));
         startParserByDisruptor(logFileParsers);
 
         //        startParser(logFileParsers);
@@ -162,6 +163,8 @@ public class LogParser {
             logEvent.logFileParser = logFileParser;
             ringBuffer.publish(next);
         }
+
+
         countDownLatch.await();
         logDbPool.close();
         writeParseHistory(handlerLogInfos);
@@ -373,66 +376,76 @@ public class LogParser {
             connection = logDbPool.getConnection();
             statement = connection.createStatement();
 
-            HashMap<String, TableStruct> dbStruct = getTableField(connection);
-            StringBuilder alertSql = new StringBuilder();
+
+            HashSet<String> newCreateTables = new HashSet();
             for (Entry<String, TableStruct> entry : xmlTemplateParser.tableStructHashMap.entrySet()) {
                 try {
                     TableStruct xmlTableStruct = entry.getValue();
                     String createTableSql = xmlTableStruct.getCreateTableSql();
 
                     if (!statement.execute(createTableSql)) {//没成功，代表已经有表，检查表结构
-
-
-                        String tableName = entry.getKey();
-                        TableStruct dbTableStruct = dbStruct.get(tableName);
-                        Map<String, TableField> dbTableFields = dbTableStruct.getFieldMap();
-                        Map<String, TableField> xmlTableFileds = xmlTableStruct.getFieldMap();
-                        alertSql.setLength(0);
-                        for (Entry<String, TableField> tf : xmlTableFileds.entrySet()) {
-                            String fieldName = tf.getKey();
-                            TableField xmlTableField = tf.getValue();
-                            if (dbTableFields.containsKey(fieldName)) {
-                                if (!dbTableFields.get(fieldName).equals(xmlTableField)) {
-                                    logger.debug("tryCreateLogDb tf.getValue():{}, dbTableFields.get(tf.getKey()):{}", xmlTableField,
-                                            dbTableFields.get(fieldName));
-                                    alertSql.append("alter table ");
-                                    alertSql.append(tableName);
-                                    alertSql.append(" change ");
-                                    alertSql.append(xmlTableField.fieldName);
-                                    alertSql.append(' ');
-                                    alertSql.append(xmlTableField.fieldName);
-                                    alertSql.append(' ');
-                                    TableStruct.appendFiledTypeAndComment(alertSql, xmlTableField);
-                                    alertSql.append(';');
-                                }
-
-                            } else {
-                                logger.debug("tryCreateLogDb tf.getKey():{}", fieldName);
-                                alertSql.append("alter table ");
-                                alertSql.append(tableName);
-                                alertSql.append(" add ");
-                                alertSql.append(xmlTableField.fieldName);
-                                alertSql.append(' ');
-                                TableStruct.appendFiledTypeAndComment(alertSql, xmlTableField);
-                                alertSql.append(';');
-
-                            }
-                        }
-                        if (alertSql.length() > 0) {
-                            logger.debug("tryCreateLogDb alertSql.toString():{}", alertSql.toString());
-                            int update = statement.executeUpdate(alertSql.toString());
-                            logger.debug("tryCreateLogDb update:{}", update);
-                        }
+                        newCreateTables.add(xmlTableStruct.tableName);
 
 
                     }
 
 
                 } catch (Exception e) {
-                    logger.debug("tryCreateLogDb e:{}", e);
+                    e.printStackTrace();
                 }
             }
+            StringBuilder alertSql = new StringBuilder();
 
+            HashMap<String, TableStruct> dbStruct = getTableField(connection);
+            for (String tableName : newCreateTables) {
+                TableStruct xmlTableStruct = xmlTemplateParser.tableStructHashMap.get(tableName);
+
+                TableStruct dbTableStruct = dbStruct.get(tableName);
+
+                Map<String, TableField> dbTableFields = dbTableStruct.getFieldMap();
+                Map<String, TableField> xmlTableFileds = xmlTableStruct.getFieldMap();
+                alertSql.setLength(0);
+                for (Entry<String, TableField> tf : xmlTableFileds.entrySet()) {
+                    String fieldName = tf.getKey();
+                    TableField xmlTableField = tf.getValue();
+                    if (dbTableFields.containsKey(fieldName)) {
+                        if (!dbTableFields.get(fieldName).equals(xmlTableField)) {
+                            logger.debug("tryCreateLogDb tf.getValue():{}, dbTableFields.get(tf.getKey()):{}", xmlTableField,
+                                    dbTableFields.get(fieldName));
+                            alertSql.append("ALTER TABLE ");
+                            alertSql.append(tableName);
+                            alertSql.append(" CHANGE ");
+                            alertSql.append(xmlTableField.fieldName);
+                            alertSql.append(" ");
+                            alertSql.append(xmlTableField.fieldName);
+                            alertSql.append(" ");
+
+
+                            TableStruct.appendFiledTypeAndComment(alertSql, xmlTableField);
+
+
+                            alertSql.append(';');
+                        }
+
+                    } else {
+                        logger.debug("tryCreateLogDb tf.getKey():{}", fieldName);
+                        alertSql.append("ALTER TABLE ");
+                        alertSql.append(tableName);
+                        alertSql.append(" ADD ");
+                        alertSql.append(xmlTableField.fieldName);
+                        alertSql.append(' ');
+                        TableStruct.appendFiledTypeAndComment(alertSql, xmlTableField);
+                        alertSql.append(';');
+
+                    }
+                }
+                if (alertSql.length() > 0) {
+                    logger.debug("tryCreateLogDb alertSql.toString():{}", alertSql.toString());
+                    int update = statement.executeUpdate(alertSql.toString());
+                    logger.debug("tryCreateLogDb update:{}", update);
+                }
+
+            }
 
             statement.close();
             connection.close();
@@ -477,14 +490,17 @@ public class LogParser {
 
     private Connection getConnection(String url, String user, String password) {
 
-        String driverName = "com.mysql.jdbc.Driver";
+        //        String driverName = "com.mysql.jdbc.Driver";
+        //        try {
+        //            Class.forName(driverName);
+        //        } catch (ClassNotFoundException e) {
+        //            e.printStackTrace();
+        //        }
         try {
-            Class.forName(driverName);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        try {
-            return DriverManager.getConnection("jdbc:mysql://" + url + "?useUnicode=true&characterEncoding=UTF-8", user, password);
+            return DriverManager.getConnection("jdbc:mysql://" + url + "", user, password);
+            //?useUnicode=true&characterEncoding=UTF-8
+            //&characterEncoding=UTF-8
+            //useUnicode=true
         } catch (SQLException e) {
             logger.debug("getConnection e.getMessage():{}", e.getMessage());
             e.printStackTrace();
@@ -674,37 +690,64 @@ public class LogParser {
         Connection connection = logDbPool.getConnection();
         connection.setAutoCommit(false);
 
-
         int tableCount = 0;
-
+        //        StringBuilder info = new StringBuilder(1024);
         try {
-
+            int index = 0;
             for (Entry<String, ArrayList<String>> stringStringBuilderEntry : logFileParser.tableSqlMap.entrySet()) {
+                index++;
                 ArrayList<String> logItems = stringStringBuilderEntry.getValue();
                 tableCount = logItems.size();
                 TableStruct tableStruct = xmlTemplateParser.getTableStruct(stringStringBuilderEntry.getKey());
                 PreparedStatement preparedStatement = connection.prepareStatement(tableStruct.prepareSql);
 
-
+                //                info.append(tableCount);
+                //                info.append("\n");
+                //                info.append(tableStruct.prepareSql);
+                //                info.append("\n");
+                //                info.append(tableStruct.tableName);
+                //                info.append("\n");
+                boolean isAdd = false;
                 for (String sql : logItems) {
+
+                    //                    info.append(sql);
+                    //                    info.append("\n");
+                    //                    info.append(tableStruct.fields.length);
+                    //                    info.append("\n");
                     String[] fields = sql.split("\\|");
                     int c = 1;
                     for (String field : fields) {
                         preparedStatement.setString(c++, field);
                     }
+                    int length = tableStruct.fields.length;
+                    while (c < length) {
+                        preparedStatement.setString(c++, "");
+                    }
                     String dt = fields[tableStruct.dtEventTimeIndex].split(" ")[0];
                     preparedStatement.setString(c, dt);
                     preparedStatement.addBatch();
+                    isAdd = true;
                 }
-                preparedStatement.executeBatch();
-                connection.commit();
+                if (isAdd) {
+                    try {
+
+                        preparedStatement.executeBatch();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                        logger.debug("logToDb tableName:{},logFileParser:{}", stringStringBuilderEntry.getKey(), logFileParser.logFile.getPath());
+                        //                        logger.debug("logToDb info.toString():{}", info.toString());
+                        throw e;
+                    }
+                }
                 preparedStatement.close();
             }
+            connection.commit();
             int count = totalSuccessHandlerFileCount.getAndIncrement();
             handlerLogInfos[count] = new HandlerLogInfo(logFileParser.logFile.getName(), new Date().getTime());
 
         } catch (Exception e) {
             logger.debug("handParseResult totalCount:{}", tableCount);
+            //            logger.debug("logToDb info.toString():{}", info.toString());
             e.printStackTrace();
             connection.rollback();
             //                                logger.debug("handParseResult stringBuilder.toString():{}", stringBuilder.toString());
