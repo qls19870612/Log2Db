@@ -1,8 +1,9 @@
-db_url=127.0.0.1:3306/
+db_url=192.168.1.99:3306/
 db_user=root
 db_passwd=123456
 #1:true 其它 false
 check_add_table=1
 #logs_dir=D:/workspace/Log2Db
-logs_dir=C:/Users/Administrator/Documents/svr_log/
+logs_dir=D:/workspace/Log2Db
 use_cache=0
+

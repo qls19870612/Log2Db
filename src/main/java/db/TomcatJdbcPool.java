@@ -30,7 +30,7 @@ public class TomcatJdbcPool implements DBPool {
         //        url = "jdbc:mysql://" + url +
         //                "?rewriteBatchedStatements=true&cachePrepStmts=true&prepStmtCacheSize=100&autoReconnect=true&initialTimeout=1&failOverReadOnly=false&autoReconnectForPools=true&noAccessToProcedureBodies=true&useUnicode=true&characterEncoding=utf8";
         url = "jdbc:mysql://" + url +
-                "?rewriteBatchedStatements=true&cachePrepStmts=true&prepStmtCacheSize=100&autoReconnect=true&initialTimeout=1&failOverReadOnly=false&autoReconnectForPools=true&noAccessToProcedureBodies=true&useUnicode=true&characterEncoding=utf8";
+                "?rewriteBatchedStatements=true&cachePrepStmts=true&prepStmtCacheSize=100&autoReconnect=true&initialTimeout=1&failOverReadOnly=false&autoReconnectForPools=true&noAccessToProcedureBodies=true&useUnicode=true&characterEncoding=utf8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
         //&allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
         p.setUrl(url);
         p.setDriverClassName("com.mysql.cj.jdbc.Driver");

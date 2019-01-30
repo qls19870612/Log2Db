@@ -5,7 +5,7 @@ import com.lmax.disruptor.WorkHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  *
@@ -14,10 +14,10 @@ import java.util.concurrent.CountDownLatch;
  */
 public class Consumer implements WorkHandler<LogEvent> {
     private static final Logger logger = LoggerFactory.getLogger(Consumer.class);
-    private final CountDownLatch countDownLatch;
+    private final AtomicInteger countDownLatch;
     private final LogParser logParser;
 
-    public Consumer(CountDownLatch countDownLatch, LogParser logParser) {
+    public Consumer(AtomicInteger countDownLatch, LogParser logParser) {
 
         this.countDownLatch = countDownLatch;
         this.logParser = logParser;
@@ -27,8 +27,8 @@ public class Consumer implements WorkHandler<LogEvent> {
     public void onEvent(LogEvent logEvent) throws Exception {
         logEvent.logFileParser.parser(logParser.xmlTemplateParser, logParser.platInfo);
         logParser.logToDb(logEvent.logFileParser);
-        
+
         logEvent.clear();
-        countDownLatch.countDown();
+        countDownLatch.incrementAndGet();
     }
 }

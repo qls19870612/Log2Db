@@ -153,19 +153,58 @@ public class LogParser {
     }
 
     private void startParserByDisruptor(ArrayList<LogFileParser> logFileParsers) throws Exception {
-        CountDownLatch countDownLatch = new CountDownLatch(logFileParsers.size());
-        ExecutorService executor = initDisruptor(countDownLatch);
+        //        CountDownLatch countDownLatch = new CountDownLatch(logFileParsers.size());
+        int totalHandlerFileCount = logFileParsers.size();
+        AtomicInteger nowHandlerCount = new AtomicInteger(0);
+        int PER_TIME_HANDLER_COUNT = 512;
+        int HALF_PER_TIME_HANDLER_COUNT = PER_TIME_HANDLER_COUNT / 2;
+
+
+        ExecutorService executor = initDisruptor(nowHandlerCount, PER_TIME_HANDLER_COUNT * 2);
+
         prepareToDb();
         handlerLogInfos = new HandlerLogInfo[logFileParsers.size()];
-        for (LogFileParser logFileParser : logFileParsers) {
-            long next = ringBuffer.next();
-            LogEvent logEvent = ringBuffer.get(next);
-            logEvent.logFileParser = logFileParser;
-            ringBuffer.publish(next);
+        //        for (LogFileParser logFileParser : logFileParsers) {
+        //            long next = ringBuffer.next();
+        //            LogEvent logEvent = ringBuffer.get(next);
+        //            logEvent.logFileParser = logFileParser;
+        //            ringBuffer.publish(next);
+        //        }
+        logger.debug("startParserByDisruptor 文件总数:{}", logFileParsers.size());
+        int headIndex = 0;
+        while (true) {
+            if (nowHandlerCount.get() >= totalHandlerFileCount) {
+                break;
+            }
+
+
+            if (headIndex < totalHandlerFileCount) {
+
+
+                if (headIndex - nowHandlerCount.get() < HALF_PER_TIME_HANDLER_COUNT) {
+                    logger.debug("startParserByDisruptor 现处理个数:{}", nowHandlerCount.get());
+                    //ringbuffer 池子有可用一半的空间时，再加满
+                    int iLen = Math.min(totalHandlerFileCount, headIndex + PER_TIME_HANDLER_COUNT);
+                    for (int i = headIndex; i < iLen; i++) {
+                        long next = ringBuffer.next();
+                        LogEvent logEvent = ringBuffer.get(next);
+                        LogFileParser logFileParser = logFileParsers.get(i);
+                        if (logFileParser == null) {
+                            throw new RuntimeException("怎么可能" + i);
+                        }
+                        logEvent.logFileParser = logFileParser;
+                        ringBuffer.publish(next);
+                        headIndex++;
+                    }
+                }
+            }
+            Thread.sleep(30);
+
+
         }
+        logger.debug("startParserByDisruptor 完成");
 
-
-        countDownLatch.await();
+        //        countDownLatch.await();
         logDbPool.close();
         writeParseHistory(handlerLogInfos);
         workerPool.halt();
@@ -317,7 +356,7 @@ public class LogParser {
         }
     }
 
-    private ExecutorService initDisruptor(CountDownLatch countDownLatch) {
+    private ExecutorService initDisruptor(AtomicInteger countDownLatch, int PER_TIME_HANDLER_COUNT) {
         logger.debug("initDisructor threadCount:{}", threadCount);
 
         AtomicInteger threadNum = new AtomicInteger(0);
@@ -326,7 +365,7 @@ public class LogParser {
             return new Thread(r, "logthread:" + count);
         });
 
-        ringBuffer = RingBuffer.create(ProducerType.MULTI, LogEvent.FACTORY, 1024, new BlockingWaitStrategy());
+        ringBuffer = RingBuffer.create(ProducerType.MULTI, LogEvent.FACTORY, PER_TIME_HANDLER_COUNT, new BlockingWaitStrategy());
         Consumer[] consumers = new Consumer[threadCount];
         int iLen = consumers.length;
         for (int i = 0; i < iLen; i++) {
