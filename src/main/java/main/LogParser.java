@@ -140,19 +140,14 @@ public class LogParser {
 
         ArrayList<LogFileParser> logFileParsers = prepareParserList(platFolder);
 
-        //        ArrayList<LogFileParser> logFileParsers = new ArrayList<>();
-        //        logFileParsers.add(new LogFileParser(1, new File("D:/workspace/Log2Db\\1\\svr_1_1_20190122184502445.log")));
-        startParserByDisruptor(logFileParsers);
-
-        //        startParser(logFileParsers);
-        //        for (LogFileParser logFileParser : logFileParsers) {
-        //            logger.debug("LogParser logFileParser.logFile.getPath():{}", logFileParser.logFile.getPath());
-        //        }
+        startParser(logFileParsers);
+//        startParserByDisruptor(logFileParsers);
         logger.debug("LogParser 处理文件个数:{},入库文件个数:{}, 耗时:{}", logFileParsers.size(), totalSuccessHandlerFileCount.get(),
                 System.currentTimeMillis() - runStartTime);
     }
 
     private void startParserByDisruptor(ArrayList<LogFileParser> logFileParsers) throws Exception {
+
         //        CountDownLatch countDownLatch = new CountDownLatch(logFileParsers.size());
         int totalHandlerFileCount = logFileParsers.size();
         AtomicInteger nowHandlerCount = new AtomicInteger(0);
@@ -309,44 +304,26 @@ public class LogParser {
 
     private void startParser(ArrayList<LogFileParser> logFileParsers) throws Exception {
         if (logFileParsers.size() > 0) {
-            ThreadFactory threadFactor = new ThreadFactory() {
+            final CountDownLatch latch = new CountDownLatch(logFileParsers.size());
+            threadPoolExecutor = new ThreadPoolExecutor(threadCount, threadCount, 60L, TimeUnit.MINUTES, new LinkedBlockingQueue<>(), new ThreadFactory() {
+                @Override
                 public Thread newThread(Runnable r) {
                     return new Thread(r);
                 }
-            };
-            BlockingQueue<Runnable> queue = new LinkedBlockingQueue<Runnable>();
+            });
 
-
-            threadPoolExecutor = new ThreadPoolExecutor(threadCount, threadCount, 60L, TimeUnit.MINUTES, queue, threadFactor);
-            int len = logFileParsers.size();
-
-            int perThreadHandCount = logFileParsers.size() / threadCount;
-
-            int remainCount = logFileParsers.size() % threadCount;
-            int maxCountThreadCount = Math.min(threadCount, logFileParsers.size());
-
-            int startIndex = 0;
-            final CountDownLatch latch = new CountDownLatch(maxCountThreadCount);
-            for (int i = 0; i < threadCount; i++) {
-                int handCount = i >= remainCount ? perThreadHandCount : perThreadHandCount + 1;
-                List<LogFileParser> handList = logFileParsers.subList(startIndex, Math.min(logFileParsers.size(), startIndex + handCount));
-                startIndex += handCount;
-
-                threadPoolExecutor.execute(new Runnable() {
-
-                    public void run() {
-                        for (LogFileParser logFileParser : handList) {
-                            try {
-                                logFileParser.parser(xmlTemplateParser, platInfo);
-                            } catch (IOException e) {
-                                logger.debug("解析出错: logFileParser.logFile.getPath():{}", logFileParser.logFile.getPath());
-                                logger.debug("Error e:{}", e);
-                            }
-                        }
-                        latch.countDown();
+            for (LogFileParser parser : logFileParsers) {
+                threadPoolExecutor.execute(() -> {
+                    try {
+                        parser.parser(xmlTemplateParser, platInfo);
+                    } catch (IOException e) {
+                        logger.debug("解析出错: logFileParser.logFile.getPath():{}", parser.logFile.getPath());
+                        logger.debug("Error e:{}", e);
                     }
+                    latch.countDown();
                 });
             }
+
             latch.await();
 
             handParseResult(logFileParsers);
