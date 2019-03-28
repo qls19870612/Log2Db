@@ -21,7 +21,9 @@ import infos.PlatInfo;
  * 创建时间 2018/11/17 18:57
  */
 public class LogFileParser {
+    //区服id
     private final int serverId;
+    //文件
     public final File logFile;
     private static final Logger logger = LoggerFactory.getLogger(LogFileParser.class);
     public final HashMap<String, ArrayList<String>> tableSqlMap = new HashMap<>();
@@ -33,8 +35,16 @@ public class LogFileParser {
         this.logFile = logFile;
     }
 
+    /**
+     * 解析文件中每一行日志
+     * 按{table=[log,log,log,...]}重新组织
+     * @param xmlTemplateParser
+     * @param platInfo
+     * @throws IOException
+     */
     public void parser(XmlTemplateParser xmlTemplateParser, PlatInfo platInfo) throws IOException {
 
+        //snappy解压文件
         byte[] bytes = Files.toByteArray(logFile);
 
         //        logger.debug("parser fileName:{} bytes:{}", logFile.getName(), Arrays.copyOf(bytes, 10));
