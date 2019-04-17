@@ -67,7 +67,7 @@ public class TableStruct {
             throw new RuntimeException("每条日志必需有 dtEventTime 字段");
         }
         dtEventTimeIndex = tmpDtEventTimeIndex;
-        TableField field = new TableField(true, "dt", "string", 20, "记录时间日期");
+        TableField field = new TableField(true, "dt", "date", 10, "日期(分区字段)");
         arrayList.add(field);
         fieldStr.append(field.fieldName);
 

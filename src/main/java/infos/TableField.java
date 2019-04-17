@@ -64,6 +64,9 @@ public class TableField {
             case "varchar":
 
                 break;
+            case "date":
+                size = 10;
+                break;
             default:
                 throw new RuntimeException("xml中配置了未知数据类型：" + type);
 
@@ -100,7 +103,8 @@ public class TableField {
         if (!b) {
             return false;
         }
-        if (type.equalsIgnoreCase("DATETIME")) {
+        //当日期相关类型不用判断
+        if (type.equalsIgnoreCase("DATETIME") || type.equalsIgnoreCase("date")) {
             return true;
         }
         return size == that.size;
@@ -117,7 +121,11 @@ public class TableField {
         return "TableField{" + "fieldName='" + fieldName + '\'' + ", type='" + type + '\'' + ", size=" + size + ", desc='" + desc + '\'' + '}';
     }
 
+    /**
+     * 判断是否日期相关类型
+     * @return boolean
+     */
     public boolean isDate() {
-        return type.equalsIgnoreCase("datetime");
+        return type.equalsIgnoreCase("datetime") || type.equalsIgnoreCase("date");
     }
 }

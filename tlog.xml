@@ -123,7 +123,7 @@
         <entry name="vGuid" type="string" size="60" desc="全局唯一标识(暂时没用,空着)"/>
         <entry name="iLoginWay" type="uint" size="" desc="登录渠道"/>
         <entry name="iNewCash" type="bigint" size="" desc="钻石余量"/>
-        <entry name="vOperate" type="string" size="60" desc="操作类型"/>
+        <entry name="iOperate" type="uint" size="60" desc="操作类型"/>
     </struct>
 
     <!--现金流日志 -->
@@ -152,12 +152,22 @@
         <entry name="dtEventTime" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
         <entry name="iRoleId" type="bigint" index="1" desc="角色ID"/>
         <entry name="vRoleName" type="string" size="60" desc="角色名"/>
-        <entry name="vOperate" type="string" size="60" desc="操作类型"/>
+        <entry name="iOperate" type="uint" size="60" desc="操作类型"/>
         <entry name="iGoodsId" type="uint" index="1" desc="物品id"/>
         <entry name="vGoodsName" type="string" size="60" desc="物品名字"/>
         <entry name="iCount" type="uint" index="1" desc="个数"/>
         <entry name="iTotalCount" type="uint" index="1" desc="动作后的道具总个数"/>
         <entry name="iIdentifier" type="uint" index="1" desc="标识 1是得到，2是失去"/>
+
+    </struct>
+
+    <!-- 在线人数 -->
+    <struct name="OnlineCount" id="" class="系统记录" class_no="12" class_sn="1" desc="在线人数"
+            dont_use_special_arg="ALL">
+        <entry name="dtEventTime" type="datetime" size="" desc="记录时间"/>
+        <entry name="iEventId" type="string" size="60" desc="游戏事件ID"/>
+        <entry name="iWorldId" type="uint" index="1" desc="游戏大区ID"/>
+        <entry name="iAccountCount" type="uint" size="" desc="当前在线帐号数量"/>
 
     </struct>
 </metalib>

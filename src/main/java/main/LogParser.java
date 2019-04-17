@@ -302,6 +302,13 @@ public class LogParser {
         }
     }
 
+    /**
+     * 处理文件逻辑
+     * 多线程分组文件结构{table:[log,log,...]}
+     * 然后入库等操作
+     * @param logFileParsers
+     * @throws Exception
+     */
     private void startParser(ArrayList<LogFileParser> logFileParsers) throws Exception {
         if (logFileParsers.size() > 0) {
             final CountDownLatch latch = new CountDownLatch(logFileParsers.size());
@@ -530,6 +537,14 @@ public class LogParser {
         }
     }
 
+    /**
+     * 多线程日志入库
+     * 及后续处理
+     * @param logFileParsers
+     * @throws SQLException
+     * @throws IOException
+     * @throws InterruptedException
+     */
     private void handParseResult(ArrayList<LogFileParser> logFileParsers) throws SQLException, IOException, InterruptedException {
         createLogDbPool();
         long time = new Date().getTime();
@@ -561,13 +576,20 @@ public class LogParser {
         ArrayList<HandlerLogInfo> parseLog = new ArrayList<>();
         int perThreadHandCount = logFileParsers.size() / threadCount;
 
+        //取模剩余的文件数
         int remainCount = logFileParsers.size() % threadCount;
 
         int maxCountThreadCount = Math.min(threadCount, logFileParsers.size());
         int startIndex = 0;
+        int handCount; //每个线程处理的文件数
         final CountDownLatch latch = new CountDownLatch(maxCountThreadCount);
         for (int i = 0; i < maxCountThreadCount; i++) {
-            int handCount = i >= remainCount ? perThreadHandCount : perThreadHandCount + 1;
+//            int handCount = i >= remainCount ? perThreadHandCount : perThreadHandCount + 1;
+            if (i == 0){
+                handCount = perThreadHandCount + remainCount;
+            }else {
+                handCount = perThreadHandCount;
+            }
             List<LogFileParser> handList = logFileParsers.subList(startIndex, Math.min(logFileParsers.size(), startIndex + handCount));
             startIndex += handCount;
             threadPoolExecutor.execute(new Runnable() {
@@ -584,6 +606,7 @@ public class LogParser {
                         for (LogFileParser logFileParser : handList) {
                             try {
                                 fileCount = 0;
+                                //一个文件内日志入库操作
                                 for (Entry<String, ArrayList<String>> stringStringBuilderEntry : logFileParser.tableSqlMap.entrySet()) {
                                     ArrayList<String> logItems = stringStringBuilderEntry.getValue();
                                     tableCount = logItems.size();
@@ -607,6 +630,7 @@ public class LogParser {
                                     preparedStatement.close();
                                 }
                                 totalSuccessHandlerFileCount.incrementAndGet();
+                                //记录下已处理的文件和时间
                                 parseLog.add(new HandlerLogInfo(logFileParser.logFile.getName(), time));
                             } catch (Exception e) {
                                 logger.debug("handParseResult sqls.size():{},fileCount:{},totalCount:{}", tableCount, fileCount, totalCount);
@@ -631,11 +655,17 @@ public class LogParser {
 
         latch.await();
         logDbPool.close();
+        //记录已处理文件
         writeParseHistory(parseLog);
 
 
     }
 
+    /**
+     * 记录已处理日志信息到parseLog.txt
+     * @param processMap
+     * @throws IOException
+     */
     private void writeParseHistory(ArrayList<HandlerLogInfo> processMap) throws IOException {
 
         StringBuilder stringBuilder = new StringBuilder();
@@ -649,6 +679,8 @@ public class LogParser {
             stringBuilder.append(handlerLogInfo.handlerTime);
             stringBuilder.append(NEW_LINE);
         }
+
+        //打开记录文件,记录在最后
         RandomAccessFile randomAccessFile = new RandomAccessFile(new File(getPlatLogFile()), "rw");
         if (properties.useCache) {
             randomAccessFile.seek(randomAccessFile.length());
@@ -665,6 +697,11 @@ public class LogParser {
         return platFolder.getPath() + "/parseLog.txt";
     }
 
+    /**
+     * 生成之前处理过的日志信息map表
+     * @param platFolder
+     * @throws IOException
+     */
     private void parserParserHistoryConfig(File platFolder) throws IOException {
         if (!properties.useCache) {
             return;
@@ -682,7 +719,13 @@ public class LogParser {
 
     }
 
+    /**
+     * 备好待处理的格式化日志List
+     * @param platFolder
+     * @return
+     */
     private ArrayList<LogFileParser> prepareParserList(File platFolder) {
+        //获取日志文件数组
         File[] logFiles = platFolder.listFiles(pathname -> pathname.getName().endsWith(".log"));
 
         ArrayList<LogFileParser> needProcessFiles = new ArrayList<LogFileParser>();
@@ -690,9 +733,11 @@ public class LogParser {
         for (File logFile : logFiles) {
             String[] split = logFile.getName().replace(".log", "").split("_");
             long time = Long.parseLong(split[split.length - 1]);
+            //跟处理过的文件列表对比
             boolean b = fileProcessorMap.containsKey(logFile.getName().toLowerCase());
             if (time >= startTime && time < endTime && !b) {
                 int serverId = Integer.parseInt(split[split.length - 2]);
+                //加入待处理文件
                 needProcessFiles.add(new LogFileParser(serverId, logFile));
 
             }
