@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import infos.PlatInfo;
+import utils.FileOperator;
 
 /**
  * 对 每个文件进行解析
@@ -44,18 +45,26 @@ public class LogFileParser {
      */
     public void parser(XmlTemplateParser xmlTemplateParser, PlatInfo platInfo) throws IOException {
 
-        //snappy解压文件
-        byte[] bytes = Files.toByteArray(logFile);
+        String string;
+        try{
+            //snappy解压文件
+            byte[] bytes = Files.toByteArray(logFile);
 
-        //        logger.debug("parser fileName:{} bytes:{}", logFile.getName(), Arrays.copyOf(bytes, 10));
+            //        logger.debug("parser fileName:{} bytes:{}", logFile.getName(), Arrays.copyOf(bytes, 10));
 
-        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
-        SnappyInputStream snappyFramedInputStream = new SnappyInputStream(byteArrayInputStream, true);
-        byte[] uncompress = ByteStreams.toByteArray(snappyFramedInputStream);
-        byteArrayInputStream.close();
-        snappyFramedInputStream.close();
-        //        byte[] uncompress = Snappy.uncompress(bytes, 0, bytes.length);
-        String string = new String(uncompress);
+            ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
+            SnappyInputStream snappyFramedInputStream = new SnappyInputStream(byteArrayInputStream, true);
+            byte[] uncompress = ByteStreams.toByteArray(snappyFramedInputStream);
+            byteArrayInputStream.close();
+            snappyFramedInputStream.close();
+            //        byte[] uncompress = Snappy.uncompress(bytes, 0, bytes.length);
+            string = new String(uncompress);
+        }
+        catch (Exception e)
+        {
+            string = FileOperator.readFiles(logFile);
+            string = string.replace("\r","");
+        }
         String[] split = string.split("\n");
         for (String s : split) {
             int i = s.indexOf('|');

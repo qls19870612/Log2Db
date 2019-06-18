@@ -447,7 +447,7 @@ public class LogParser {
                             TableStruct.appendFiledTypeAndComment(alertSql, xmlTableField);
 
 
-                            alertSql.append(';');
+                            alertSql.append(";\n");
                         }
 
                     } else {
@@ -458,7 +458,7 @@ public class LogParser {
                         alertSql.append(xmlTableField.fieldName);
                         alertSql.append(' ');
                         TableStruct.appendFiledTypeAndComment(alertSql, xmlTableField);
-                        alertSql.append(';');
+                        alertSql.append(";\n");
 
                     }
                 }
@@ -520,7 +520,7 @@ public class LogParser {
         //            e.printStackTrace();
         //        }
         try {
-            return DriverManager.getConnection("jdbc:mysql://" + url + "", user, password);
+            return DriverManager.getConnection("jdbc:mysql://" + url + "?serverTimezone=UTC", user, password);
             //?useUnicode=true&characterEncoding=UTF-8
             //&characterEncoding=UTF-8
             //useUnicode=true

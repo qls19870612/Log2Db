@@ -45,6 +45,7 @@ public class TableField {
                 type = "varchar";
                 break;
             case "uint":
+            case "int":
                 type = "int";
                 size = 10;
                 break;
