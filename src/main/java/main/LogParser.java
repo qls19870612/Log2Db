@@ -433,8 +433,7 @@ public class LogParser {
                     TableField xmlTableField = tf.getValue();
                     if (dbTableFields.containsKey(fieldName)) {
                         if (!dbTableFields.get(fieldName).equals(xmlTableField)) {
-                            logger.debug("tryCreateLogDb tf.getValue():{}, dbTableFields.get(tf.getKey()):{}", xmlTableField,
-                                    dbTableFields.get(fieldName));
+                            alertSql.setLength(0);
                             alertSql.append("ALTER TABLE ");
                             alertSql.append(tableName);
                             alertSql.append(" CHANGE ");
@@ -446,26 +445,30 @@ public class LogParser {
 
                             TableStruct.appendFiledTypeAndComment(alertSql, xmlTableField);
 
-
-                            alertSql.append(";\n");
+                            String sql1 = alertSql.toString();
+                            logger.debug("tryCreateLogDb sql1:{}", sql1);
+                            statement.addBatch(sql1);
                         }
 
                     } else {
-                        logger.debug("tryCreateLogDb tf.getKey():{}", fieldName);
+                        alertSql.setLength(0);
+
                         alertSql.append("ALTER TABLE ");
                         alertSql.append(tableName);
                         alertSql.append(" ADD ");
                         alertSql.append(xmlTableField.fieldName);
                         alertSql.append(' ');
                         TableStruct.appendFiledTypeAndComment(alertSql, xmlTableField);
-                        alertSql.append(";\n");
+                        String sql1 = alertSql.toString();
+                        logger.debug("tryCreateLogDb sql1:{}", sql1);
+                        statement.addBatch(sql1);
 
                     }
                 }
                 if (alertSql.length() > 0) {
-                    logger.debug("tryCreateLogDb alertSql.toString():{}", alertSql.toString());
-                    int update = statement.executeUpdate(alertSql.toString());
-                    logger.debug("tryCreateLogDb update:{}", update);
+
+                    int[] results = statement.executeBatch();
+                    logger.debug("tryCreateLogDb results:{}", results);
                 }
 
             }

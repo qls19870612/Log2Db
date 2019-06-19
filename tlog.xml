@@ -384,11 +384,11 @@
         <entry name="iRoleLevel" type="uint" size="" desc="角色等级"/>
         <entry name="taskType" type="uint" size="" desc="任务类型"/>
         <entry name="completeTaskId" type="uint" size="" desc="前一个任务ID"/>
-        <entry name="currTaskIds" type="string" size="" desc="角色当前身上任务ID,多个用逗号分割"/>
-        <!--备注：主线任务可以做成跟等级流失一样的直接在数据后台展示-->
+        <entry name="currTaskIds" type="string" size="160" desc="角色当前身上任务ID_多个用逗号分割"/>
         <entry name="iLoginWay" type="uint" size="" desc="登录渠道"/>
 
     </struct>
+    <!--备注：主线任务可以做成跟等级流失一样的直接在数据后台展示  -->
     <!--副本星级日志 -->
     <struct name="FBExit" id="" class="系统玩法"
             desc="副本星级日志 备注：退出记录一次 佣兵	金币	纹章	经验	装备	守卫公会 没有星级的-佣兵副本	金币副本	经验副本	装备副本	符文副本	荣誉挑战	世界boss	boss之家	个人boss	魔界boss	智慧试炼	勇者之巅	三族战场	公会晚宴	公会争霸	守卫公会">
