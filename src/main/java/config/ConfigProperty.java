@@ -23,7 +23,8 @@ public class ConfigProperty extends Properties {
         db_user = getString("db_user");
         db_passwd = getString("db_passwd");
         check_add_table = getBoolean("check_add_table");
-        logs_dir = getString("logs_dir");
+        logs_dir = getString("logs_dir").replaceAll("\\\\","\\/");
+
         useCache = getBoolean("use_cache");
     }
 

@@ -142,7 +142,7 @@ public class LogParser {
 
         startParser(logFileParsers);
 //        startParserByDisruptor(logFileParsers);
-        logger.debug("LogParser 处理文件个数:{},入库文件个数:{}, 耗时:{}", logFileParsers.size(), totalSuccessHandlerFileCount.get(),
+        logger.debug("LogParser handle count:{},to db count:{}, use time:{}ms", logFileParsers.size(), totalSuccessHandlerFileCount.get(),
                 System.currentTimeMillis() - runStartTime);
     }
 
@@ -419,7 +419,7 @@ public class LogParser {
             }
             StringBuilder alertSql = new StringBuilder();
 
-            HashMap<String, TableStruct> dbStruct = getTableField(connection);
+            HashMap<String, TableStruct> dbStruct = getTableField(connection,logDbName);
             for (String tableName : newCreateTables) {
                 TableStruct xmlTableStruct = xmlTemplateParser.tableStructHashMap.get(tableName);
 
@@ -480,11 +480,11 @@ public class LogParser {
 
     }
 
-    private HashMap<String, TableStruct> getTableField(Connection logDbCon) throws Exception {
+    private HashMap<String, TableStruct> getTableField(Connection logDbCon, String logDbName) throws Exception {
 
         HashMap<String, TableStruct> ret = new HashMap<>();
         DatabaseMetaData metaData = logDbCon.getMetaData();
-        ResultSet tableRet = metaData.getTables(null, "%", "%", new String[]{"TABLE"});
+        ResultSet tableRet = metaData.getTables(logDbName,null , "%", new String[]{"TABLE"});
         /*其中"%"就是表示*的意思，也就是任意所有的意思。其中m_TableName就是要获取的数据表的名字，如果想获取所有的表的名字，就可以使用"%"来作为参数了。*/
 
         //3. 提取表的名字。
@@ -492,11 +492,10 @@ public class LogParser {
         while (tableRet.next()) {
 
             String table_name = tableRet.getString("TABLE_NAME");
-
-
             String columnName;
             String columnType;
-            ResultSet colRet = metaData.getColumns(null, "%", table_name, "%");
+            ResultSet colRet = metaData.getColumns(null, logDbName, table_name, "%");
+
             fields.clear();
             while (colRet.next()) {
                 columnName = colRet.getString("COLUMN_NAME");

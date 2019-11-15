@@ -10,17 +10,18 @@
     <!--LOAD_OPERATION = 7; //穿戴-->
     <!--}-->
     <!-- 角色登录LOG -->
+    <!--search 字段表示在GM后台搜索字段 1为普通搜索 2为区间搜索-->
     <struct name="RoleLogin" id="" desc="角色登录LOG">
         <entry name="iEventId" type="string" size="60" desc="游戏事件ID"/>
         <entry name="iWorldId" type="uint" index="1" desc="游戏大区ID"/>
-        <entry name="iUin" type="string" size="60" desc="用户ID"/>
-        <entry name="dtEventTime" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
-        <entry name="iRoleId" type="bigint" index="1" desc="角色ID"/>
+        <entry name="iUin" search="1" type="string" size="60" desc="用户ID"/>
+        <entry name="dtEventTime" sort="3" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
+        <entry name="iRoleId" sort="2" search="1" type="bigint" index="1" desc="角色ID"/>
         <entry name="vClientIp" type="string" size="16" desc="客户端所在ip"/>
-        <entry name="vRoleName" type="string" size="20" desc="角色名"/>
+        <entry name="vRoleName" sort="1" search="1" type="string" size="20" desc="角色名"/>
         <entry name="iJobId" type="utinyint" size="" desc="角色职业"/>
 
-        <entry name="iRoleLevel" type="uint" size="" desc="角色等级"/>
+        <entry name="iRoleLevel" search="2" type="uint" size="" desc="角色等级"/>
         <entry name="iRoleExp" type="bigint" size="" desc="角色经验值"/>
         <entry name="iMoney" type="bigint" size="" desc="角色金币数"/>
         <entry name="iLijin" type="bigint" size="" desc="角色绑钻数量"/>
@@ -35,18 +36,18 @@
     <struct name="RoleLogout" id="" desc="角色登出LOG">
         <entry name="iEventId" type="string" size="60" desc="游戏事件ID"/>
         <entry name="iWorldId" type="uint" index="1" desc="游戏大区ID"/>
-        <entry name="iUin" type="string" size="60" desc="用户ID"/>
-        <entry name="dtEventTime" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
+        <entry name="iUin" search="1" type="string" size="60" desc="用户ID"/>
+        <entry name="dtEventTime" sort="3" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
         <entry name="dtLoginTime" type="datetime" size="" desc="登录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
-        <entry name="iRoleId" type="bigint" index="1" desc="角色ID"/>
+        <entry name="iRoleId" sort="2" search="1" type="bigint" index="1" desc="角色ID"/>
         <entry name="vClientIp" type="string" size="16" desc="客户端所在ip"/>
         <entry name="dtCreateTime" type="datetime" size="" desc="角色创建的时间"/>
         <entry name="iOnlineTime" type="uint" size="" desc="本次登录在线时间"/>
         <entry name="iOnlineTotalTime" type="uint" size="" desc="角色总在线时长"/>
-        <entry name="vRoleName" type="string" size="20" desc="角色名"/>
+        <entry name="vRoleName" sort="1" search="1" type="string" size="20" desc="角色名"/>
         <entry name="iJobId" type="utinyint" size="" desc="角色职业"/>
 
-        <entry name="iRoleLevel" type="uint" size="" desc="角色等级"/>
+        <entry name="iRoleLevel" search="2" type="uint" size="" desc="角色等级"/>
         <entry name="iRoleExp" type="bigint" size="" desc="角色经验值"/>
         <entry name="iMoney" type="bigint" size="" desc="角色金币数"/>
         <entry name="iLijin" type="bigint" size="" desc="角色绑钻数量"/>
@@ -63,11 +64,11 @@
     <struct name="CreateRole" id="" desc="创建角色" dont_use_special_arg="DONT">
         <entry name="iEventId" type="string" size="60" desc="游戏事件ID"/>
         <entry name="iWorldId" type="uint" index="1" desc="游戏大区ID"/>
-        <entry name="iUin" type="string" size="60" desc="用户ID"/>
-        <entry name="dtEventTime" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
-        <entry name="iRoleId" type="bigint" index="1" desc="角色ID"/>
+        <entry name="iUin" search="1" type="string" size="60" desc="用户ID"/>
+        <entry name="dtEventTime" sort="3" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
+        <entry name="iRoleId" sort="2" search="1" type="bigint" index="1" desc="角色ID"/>
         <entry name="vClientIp" type="string" size="16" desc="客户端所在ip"/>
-        <entry name="vRoleName" type="string" size="20" desc="角色名"/>
+        <entry name="vRoleName" sort="1" search="1" type="string" size="20" desc="角色名"/>
         <entry name="iJobId" type="utinyint" size="" desc="角色职业"/>
 
         <entry name="iLoginWay" type="uint" size="" desc="登录渠道"/>
@@ -78,14 +79,14 @@
     <struct name="RoleLevelUp" id="" desc="角色等级">
         <entry name="iEventId" type="string" size="60" desc="游戏事件ID"/>
         <entry name="iWorldId" type="uint" index="1" desc="游戏大区ID"/>
-        <entry name="iUin" type="string" size="60" desc="用户ID"/>
-        <entry name="dtEventTime" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
-        <entry name="iRoleId" type="bigint" index="1" desc="角色ID"/>
+        <entry name="iUin" search="1" type="string" size="60" desc="用户ID"/>
+        <entry name="dtEventTime" sort="3" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
+        <entry name="iRoleId" sort="2" search="1" type="bigint" index="1" desc="角色ID"/>
         <entry name="vClientIp" type="string" size="16" desc="客户端所在ip"/>
-        <entry name="vRoleName" type="string" size="20" desc="角色名"/>
+        <entry name="vRoleName" sort="1" search="1" type="string" size="20" desc="角色名"/>
         <entry name="iJobId" type="utinyint" size="" desc="角色职业"/>
 
-        <entry name="iRoleLevel" type="uint" size="" desc="角色等级"/>
+        <entry name="iRoleLevel" search="2" type="uint" size="" desc="角色等级"/>
         <entry name="iRoleExp" type="bigint" size="" desc="角色经验值"/>
         <entry name="iMoney" type="bigint" size="" desc="角色金币数"/>
         <entry name="iLijin" type="bigint" size="" desc="角色绑钻数量"/>
@@ -101,12 +102,12 @@
     <!-- 充值 -->
     <struct name="Recharge" id="" desc="充值" dont_use_special_arg="ALL">
         <entry name="iEventId" type="string" size="60" desc="操作ID"/>
-        <entry name="dtEventTime" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
+        <entry name="dtEventTime" sort="3" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
         <entry name="iWorldId" type="uint" index="1" desc="游戏大区ID"/>
-        <entry name="iUin" type="string" size="60" desc="用户ID"/>
-        <entry name="iRoleId" type="bigint" index="1" desc="角色ID"/>
-        <entry name="vRoleName" type="string" size="20" desc="角色名"/>
-        <entry name="iRoleLevel" type="uint" size="" desc="角色等级"/>
+        <entry name="iUin" search="1" type="string" size="60" desc="用户ID"/>
+        <entry name="iRoleId" sort="2" search="1" type="bigint" index="1" desc="角色ID"/>
+        <entry name="vRoleName" sort="1" search="1" type="string" size="20" desc="角色名"/>
+        <entry name="iRoleLevel" search="2" type="uint" size="" desc="角色等级"/>
         <entry name="vSN" type="string" size="64" desc="流水号"/>
         <entry name="ts" type="uint" size="" desc="充值时间"/>
         <entry name="iPayDelta" type="uint" size="" desc="充值金额"/>
@@ -120,34 +121,34 @@
     <struct name="Shop" id="" desc="充值钻石消费">
         <entry name="iEventId" type="string" size="60" desc="游戏事件ID"/>
         <entry name="iWorldId" type="uint" index="1" desc="游戏大区ID"/>
-        <entry name="iUin" type="string" size="60" desc="用户ID"/>
-        <entry name="dtEventTime" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
-        <entry name="iRoleId" type="bigint" index="1" desc="角色ID"/>
+        <entry name="iUin" search="1" type="string" size="60" desc="用户ID"/>
+        <entry name="dtEventTime" sort="3" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
+        <entry name="iRoleId" sort="2" search="1" type="bigint" index="1" desc="角色ID"/>
         <entry name="vClientIp" type="string" size="16" desc="客户端所在ip"/>
-        <entry name="vRoleName" type="string" size="20" desc="角色名"/>
+        <entry name="vRoleName" sort="1" search="1" type="string" size="20" desc="角色名"/>
         <entry name="iJobId" type="utinyint" size="" desc="角色职业"/>
 
         <entry name="iCost" type="bigint" size="" desc="支付消耗"/>
         <entry name="iShopType" type="utinyint" size="1" desc="商店类型，消费类型 1为各种商店购买，2为其他消费如元宝一键扫荡等"/>
-        <entry name="iGoodsType" type="uint" size="" desc="商城ID"/>
-        <entry name="iGoodsId" type="uint" size="" desc="商品ID"/>
+        <entry name="iGoodsType" type="uint" size="" desc="商品类型"/>
+        <entry name="iGoodsId" type="uint" size="" desc="物品ID"/>
         <entry name="iGoodsNum" type="uint" size="" desc="物品数量"/>
         <entry name="vGuid" type="string" size="60" desc="全局唯一标识(暂时没用,空着)"/>
         <entry name="iLoginWay" type="uint" size="" desc="登录渠道"/>
         <entry name="iNewCash" type="bigint" size="" desc="钻石余量"/>
-        <entry name="iOperate" type="uint" size="60" desc="操作类型"/>
+        <entry name="iOperate" search="1" type="uint" size="60" desc="操作类型"/>
     </struct>
 
     <!--现金流日志 -->
     <struct name="MoneyFlow" id="" desc="现金流" dont_use_special_arg="ALL">
         <entry name="iEventId" type="string" size="60" desc="游戏事件ID"/>
         <entry name="iWorldId" type="uint" index="1" desc="游戏大区ID"/>
-        <entry name="iUin" type="string" size="60" desc="用户ID"/>
-        <entry name="dtEventTime" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
-        <entry name="iRoleId" type="bigint" index="1" desc="角色ID"/>
-        <entry name="vRoleName" type="string" size="20" desc="角色名"/>
+        <entry name="iUin" search="1" type="string" size="60" desc="用户ID"/>
+        <entry name="dtEventTime" sort="3" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
+        <entry name="iRoleId" sort="2" search="1" type="bigint" index="1" desc="角色ID"/>
+        <entry name="vRoleName" sort="1" search="1" type="string" size="20" desc="角色名"/>
         <entry name="iJobId" type="utinyint" size="" desc="角色职业"/>
-        <entry name="iRoleLevel" type="uint" size="" desc="角色等级"/>
+        <entry name="iRoleLevel" search="2" type="uint" size="" desc="角色等级"/>
         <entry name="iMoneyBeforer" type="bigint" size="" desc="动作前的金钱数"/>
         <entry name="iMoneyAfter" type="bigint" size="" desc="动作后的金钱数"/>
         <entry name="iMoney" type="bigint" size="" desc="动作涉及的金钱数"/>
@@ -161,11 +162,11 @@
     <struct name="GoodsFlow" id="" desc="物品流向日志">
         <entry name="iEventId" type="string" size="60" desc="操作ID"/>
         <entry name="iWorldId" type="uint" index="1" desc="游戏大区ID"/>
-        <entry name="iUin" type="string" size="60" desc="用户ID"/>
-        <entry name="dtEventTime" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
-        <entry name="iRoleId" type="bigint" index="1" desc="角色ID"/>
-        <entry name="vRoleName" type="string" size="60" desc="角色名"/>
-        <entry name="iOperate" type="uint" size="60" desc="操作类型"/>
+        <entry name="iUin" search="1" type="string" size="60" desc="用户ID"/>
+        <entry name="dtEventTime" sort="3" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
+        <entry name="iRoleId" sort="2" search="1" type="bigint" index="1" desc="角色ID"/>
+        <entry name="vRoleName" sort="1" search="1" type="string" size="60" desc="角色名"/>
+        <entry name="iOperate" search="1" type="uint" size="60" desc="操作类型"/>
         <entry name="iGoodsId" type="uint" index="1" desc="物品id"/>
         <entry name="vGoodsName" type="string" size="60" desc="物品名字"/>
         <entry name="iCount" type="uint" index="1" desc="个数"/>
@@ -177,54 +178,55 @@
     <!-- 在线人数 -->
     <struct name="OnlineCount" id="" class="系统记录" desc="在线人数"
             dont_use_special_arg="DONT">
-        <entry name="dtEventTime" type="datetime" size="" desc="记录时间"/>
+        <entry name="dtEventTime" sort="3" type="datetime" size="" desc="记录时间"/>
         <entry name="iEventId" type="string" size="60" desc="游戏事件ID"/>
         <entry name="iWorldId" type="uint" index="1" desc="游戏大区ID"/>
         <entry name="iAccountCount" type="uint" size="" desc="当前在线帐号数量"/>
+        <entry name="iKfCount" type="uint" size="" desc="当前在线帐号在跨服的数量"/>
 
     </struct>
 
     <!--————————————————————————————2019/05/15——————————————————————————————-->
-    <!--强化日志 -->
-    <struct name="EquipStrengthen" id="" class="系统玩法" desc="强化日志 备注：强化等级发生变化的时候记录">
+    <!--强化日志 备注：强化等级发生变化的时候记录-->
+    <struct name="EquipStrengthen" id="" class="系统玩法" desc="强化日志">
         <entry name="iEventId" type="string" size="60" desc="游戏事件ID"/>
         <entry name="iWorldId" type="uint" index="1" desc="游戏大区ID"/>
-        <entry name="iUin" type="string" size="60" desc="用户ID"/>
-        <entry name="dtEventTime" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
-        <entry name="iRoleId" type="bigint" index="1" desc="角色ID"/>
-        <entry name="vRoleName" type="string" size="20" desc="角色名"/>
+        <entry name="iUin" search="1" type="string" size="60" desc="用户ID"/>
+        <entry name="dtEventTime" sort="3" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
+        <entry name="iRoleId" sort="2" search="1" type="bigint" index="1" desc="角色ID"/>
+        <entry name="vRoleName" sort="1" search="1" type="string" size="20" desc="角色名"/>
         <entry name="iJobId" type="utinyint" size="" desc="角色职业"/>
-        <entry name="iRoleLevel" type="uint" size="" desc="角色等级"/>
+        <entry name="iRoleLevel" search="2" type="uint" size="" desc="角色等级"/>
         <entry name="iEqiupStrengthenLevel" type="uint" size="" desc="当前强化等级"/>
         <entry name="iEqiupType" type="uint" size="" desc="装备部位"/>
         <entry name="iLoginWay" type="uint" size="" desc="登录渠道"/>
 
     </struct>
-    <!--宝石日志 -->
-    <struct name="Gem" id="" class="系统玩法" desc="宝石日志 备注：宝石等级发生变化的时候">
+    <!--宝石日志 备注：宝石等级发生变化的时候-->
+    <struct name="Gem" id="" class="系统玩法" desc="宝石日志">
         <entry name="iEventId" type="string" size="60" desc="游戏事件ID"/>
         <entry name="iWorldId" type="uint" index="1" desc="游戏大区ID"/>
-        <entry name="iUin" type="string" size="60" desc="用户ID"/>
-        <entry name="dtEventTime" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
-        <entry name="iRoleId" type="bigint" index="1" desc="角色ID"/>
-        <entry name="vRoleName" type="string" size="20" desc="角色名"/>
+        <entry name="iUin" search="1" type="string" size="60" desc="用户ID"/>
+        <entry name="dtEventTime" sort="3" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
+        <entry name="iRoleId" sort="2" search="1" type="bigint" index="1" desc="角色ID"/>
+        <entry name="vRoleName" sort="1" search="1" type="string" size="20" desc="角色名"/>
         <entry name="iJobId" type="utinyint" size="" desc="角色职业"/>
-        <entry name="iRoleLevel" type="uint" size="" desc="角色等级"/>
+        <entry name="iRoleLevel" search="2" type="uint" size="" desc="角色等级"/>
         <entry name="iGoodsId" type="uint" size="" desc="当前镶嵌宝石（只记录宝石表里面宝石的id）"/>
         <entry name="iEqiupType" type="uint" size="" desc="装备部位（一件装备记录多条）"/>
         <entry name="iLoginWay" type="uint" size="" desc="登录渠道"/>
 
     </struct>
-    <!--套装日志（注意是诛仙诛神套不是新加的功能） -->
-    <struct name="Suit" id="" class="系统玩法" desc="套装日志 锻造时记录">
+    <!--套装日志（注意是诛仙诛神套不是新加的功能） 锻造时记录-->
+    <struct name="Suit" id="" class="系统玩法" desc="套装日志">
         <entry name="iEventId" type="string" size="60" desc="游戏事件ID"/>
         <entry name="iWorldId" type="uint" index="1" desc="游戏大区ID"/>
-        <entry name="iUin" type="string" size="60" desc="用户ID"/>
-        <entry name="dtEventTime" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
-        <entry name="iRoleId" type="bigint" index="1" desc="角色ID"/>
-        <entry name="vRoleName" type="string" size="20" desc="角色名"/>
+        <entry name="iUin" search="1" type="string" size="60" desc="用户ID"/>
+        <entry name="dtEventTime" sort="3" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
+        <entry name="iRoleId" sort="2" search="1" type="bigint" index="1" desc="角色ID"/>
+        <entry name="vRoleName" sort="1" search="1" type="string" size="20" desc="角色名"/>
         <entry name="iJobId" type="utinyint" size="" desc="角色职业"/>
-        <entry name="iRoleLevel" type="uint" size="" desc="角色等级"/>
+        <entry name="iRoleLevel" search="2" type="uint" size="" desc="角色等级"/>
         <entry name="equipType" type="uint" size="" desc="装备部位"/>
         <entry name="suitType" type="uint" size="" desc="套装类型"/>
         <entry name="iLoginWay" type="uint" size="" desc="登录渠道"/>
@@ -232,35 +234,35 @@
     </struct>
 
 
-    <!--神盾日志 -->
-    <struct name="PetPlugin" id="" class="系统玩法" desc="神盾日志 备注：激活新的神盾、神盾阶数发生变化的时候记录">
+    <!--神盾日志 备注：激活新的神盾、神盾阶数发生变化的时候记录-->
+    <struct name="PetPlugin" id="" class="系统玩法" desc="神盾日志">
         <entry name="iEventId" type="string" size="60" desc="游戏事件ID"/>
         <entry name="iWorldId" type="uint" index="1" desc="游戏大区ID"/>
-        <entry name="iUin" type="string" size="60" desc="用户ID"/>
-        <entry name="dtEventTime" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
-        <entry name="iRoleId" type="bigint" index="1" desc="角色ID"/>
-        <entry name="vRoleName" type="string" size="20" desc="角色名"/>
+        <entry name="iUin" search="1" type="string" size="60" desc="用户ID"/>
+        <entry name="dtEventTime" sort="3" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
+        <entry name="iRoleId" sort="2" search="1" type="bigint" index="1" desc="角色ID"/>
+        <entry name="vRoleName" sort="1" search="1" type="string" size="20" desc="角色名"/>
         <entry name="iJobId" type="utinyint" size="" desc="角色职业"/>
-        <entry name="iRoleLevel" type="uint" size="" desc="角色等级"/>
-        <entry name="operationType" type="uint" size="" desc="操作类型 ExternalLogOperationType  5：升阶星 6:激活"/>
+        <entry name="iRoleLevel" search="2" type="uint" size="" desc="角色等级"/>
+        <entry name="operationType" search="1" type="uint" size="" desc="操作类型 ExternalLogOperationType  5：升阶星 6:激活"/>
         <entry name="iPetPluginGetId" type="uint" size="" desc="当前激活神盾id"/>
         <entry name="iPetPluginGrade" type="uint" size="" desc="已经激活的神盾分别的阶数"/>
         <entry name="iLoginWay" type="uint" size="" desc="登录渠道"/>
 
     </struct>
-    <!--外显日志 -->
+    <!--外显日志 升级,升星，使用丹药 transformType:-1宠物  -2：坐骑 其它按 TransformType-->
     <struct name="ExternalDisplayChange" id="" class="系统玩法"
-            desc="外显日志,升级,升星，使用丹药 transformType:-1宠物  -2：坐骑 其它按 TransformType">
+            desc="外显日志">
         <entry name="iEventId" type="string" size="60" desc="游戏事件ID"/>
         <entry name="iWorldId" type="uint" index="1" desc="游戏大区ID"/>
-        <entry name="iUin" type="string" size="60" desc="用户ID"/>
-        <entry name="dtEventTime" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
-        <entry name="iRoleId" type="bigint" index="1" desc="角色ID"/>
-        <entry name="vRoleName" type="string" size="20" desc="角色名"/>
+        <entry name="iUin" search="1" type="string" size="60" desc="用户ID"/>
+        <entry name="dtEventTime" sort="3" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
+        <entry name="iRoleId" sort="2" search="1" type="bigint" index="1" desc="角色ID"/>
+        <entry name="vRoleName" sort="1" search="1" type="string" size="20" desc="角色名"/>
         <entry name="iJobId" type="utinyint" size="" desc="角色职业"/>
-        <entry name="iRoleLevel" type="uint" size="" desc="角色等级"/>
+        <entry name="iRoleLevel" search="2" type="uint" size="" desc="角色等级"/>
         <entry name="transformType" type="uint" size="" desc="幻化类型"/>
-        <entry name="operationType" type="uint" size="" desc="操作类型 ExternalLogOperationType  1：使用丹药1，2：使用丹药2，3：使用丹药3  4：升级 5：升阶星 "/>
+        <entry name="operationType" search="1" type="uint" size="" desc="操作类型 ExternalLogOperationType  1：使用丹药1，2：使用丹药2，3：使用丹药3  4：升级 5：升阶星 "/>
 
         <entry name="currLv" type="uint" size="" desc="当前等级"/>
         <entry name="currStage" type="uint" size="" desc="阶级"/>
@@ -274,14 +276,14 @@
     <struct name="ActiveTransform" id="" class="系统玩法" desc="幻形激活">
         <entry name="iEventId" type="string" size="60" desc="游戏事件ID"/>
         <entry name="iWorldId" type="uint" index="1" desc="游戏大区ID"/>
-        <entry name="iUin" type="string" size="60" desc="用户ID"/>
-        <entry name="dtEventTime" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
-        <entry name="iRoleId" type="bigint" index="1" desc="角色ID"/>
-        <entry name="vRoleName" type="string" size="20" desc="角色名"/>
+        <entry name="iUin" search="1" type="string" size="60" desc="用户ID"/>
+        <entry name="dtEventTime" sort="3" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
+        <entry name="iRoleId" sort="2" search="1" type="bigint" index="1" desc="角色ID"/>
+        <entry name="vRoleName" sort="1" search="1" type="string" size="20" desc="角色名"/>
         <entry name="iJobId" type="utinyint" size="" desc="角色职业"/>
-        <entry name="iRoleLevel" type="uint" size="" desc="角色等级"/>
+        <entry name="iRoleLevel" search="2" type="uint" size="" desc="角色等级"/>
         <entry name="transformType" type="uint" size="" desc="幻化类型"/>
-        <entry name="operationType" type="uint" size="" desc="操作类型 ExternalLogOperationType  4：升级 5：升阶星 6:激活 "/>
+        <entry name="operationType" search="1" type="uint" size="" desc="操作类型 ExternalLogOperationType  4：升级 5：升阶星 6:激活 "/>
         <entry name="transformId" type="uint" size="" desc="幻形ID"/>
         <entry name="transformLv" type="uint" size="" desc="幻形等级"/>
         <entry name="transformStar" type="uint" size="" desc="幻形星级"/>
@@ -289,16 +291,16 @@
     </struct>
 
 
-    <!--装备日志 -->
-    <struct name="Equip" id="" class="系统玩法" desc="装备日志  退出时记录">
+    <!--装备日志 退出时记录-->
+    <struct name="Equip" id="" class="系统玩法" desc="装备日志">
         <entry name="iEventId" type="string" size="60" desc="游戏事件ID"/>
         <entry name="iWorldId" type="uint" index="1" desc="游戏大区ID"/>
-        <entry name="iUin" type="string" size="60" desc="用户ID"/>
-        <entry name="dtEventTime" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
-        <entry name="iRoleId" type="bigint" index="1" desc="角色ID"/>
-        <entry name="vRoleName" type="string" size="20" desc="角色名"/>
+        <entry name="iUin" search="1" type="string" size="60" desc="用户ID"/>
+        <entry name="dtEventTime" sort="3" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
+        <entry name="iRoleId" sort="2" search="1" type="bigint" index="1" desc="角色ID"/>
+        <entry name="vRoleName" sort="1" search="1" type="string" size="20" desc="角色名"/>
         <entry name="iJobId" type="utinyint" size="" desc="角色职业"/>
-        <entry name="iRoleLevel" type="uint" size="" desc="角色等级"/>
+        <entry name="iRoleLevel" search="2" type="uint" size="" desc="角色等级"/>
 
         <entry name="iGoodsId1" type="uint" size="" desc="装备ID"/>
         <entry name="iEquipStar1" type="uint" size="" desc="装备星级"/>
@@ -323,134 +325,135 @@
         <entry name="iLoginWay" type="uint" size="" desc="登录渠道"/>
 
     </struct>
-    <!--符文日志 -->
-    <struct name="Rune" id="" class="系统玩法" desc="符文日志 备注：镶嵌新的符文、符文等级发生变化时候记录">
+    <!--符文日志 备注：镶嵌新的符文、符文等级发生变化时候记录-->
+    <struct name="Rune" id="" class="系统玩法" desc="符文日志">
         <entry name="iEventId" type="string" size="60" desc="游戏事件ID"/>
         <entry name="iWorldId" type="uint" index="1" desc="游戏大区ID"/>
-        <entry name="iUin" type="string" size="60" desc="用户ID"/>
-        <entry name="dtEventTime" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
-        <entry name="iRoleId" type="bigint" index="1" desc="角色ID"/>
-        <entry name="vRoleName" type="string" size="20" desc="角色名"/>
+        <entry name="iUin" search="1" type="string" size="60" desc="用户ID"/>
+        <entry name="dtEventTime" sort="3" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
+        <entry name="iRoleId" sort="2" search="1" type="bigint" index="1" desc="角色ID"/>
+        <entry name="vRoleName" sort="1" search="1" type="string" size="20" desc="角色名"/>
         <entry name="iJobId" type="utinyint" size="" desc="角色职业"/>
-        <entry name="iRoleLevel" type="uint" size="" desc="角色等级"/>
-        <entry name="operationType" type="uint" size="" desc="操作类型 ExternalLogOperationType  4：升级 7：穿戴 "/>
+        <entry name="iRoleLevel" search="2" type="uint" size="" desc="角色等级"/>
+        <entry name="operationType" search="1" type="uint" size="" desc="操作类型 ExternalLogOperationType  4：升级 7：穿戴 "/>
         <entry name="iGoodsId" type="uint" size="" desc="当前身上穿戴的符文ID(只记录符文相关的道具)"/>
         <entry name="iGridIndex" type="uint" size="" desc="格子索引"/>
         <entry name="iRuneLv" type="uint" size="" desc="当前身上穿戴的符文等级"/>
         <entry name="iLoginWay" type="uint" size="" desc="登录渠道"/>
 
     </struct>
-    <!--纹章日志 -->
-    <struct name="Wenz" id="" class="系统玩法" desc="纹章日志  备注：同符文">
+    <!--纹章日志 备注：同符文-->
+    <struct name="Wenz" id="" class="系统玩法" desc="纹章日志">
         <entry name="iEventId" type="string" size="60" desc="游戏事件ID"/>
         <entry name="iWorldId" type="uint" index="1" desc="游戏大区ID"/>
-        <entry name="iUin" type="string" size="60" desc="用户ID"/>
-        <entry name="dtEventTime" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
-        <entry name="iRoleId" type="bigint" index="1" desc="角色ID"/>
-        <entry name="vRoleName" type="string" size="20" desc="角色名"/>
+        <entry name="iUin" search="1" type="string" size="60" desc="用户ID"/>
+        <entry name="dtEventTime" sort="3" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
+        <entry name="iRoleId" sort="2" search="1" type="bigint" index="1" desc="角色ID"/>
+        <entry name="vRoleName" sort="1" search="1" type="string" size="20" desc="角色名"/>
         <entry name="iJobId" type="utinyint" size="" desc="角色职业"/>
-        <entry name="iRoleLevel" type="uint" size="" desc="角色等级"/>
-        <entry name="operationType" type="uint" size="" desc="操作类型 ExternalLogOperationType  4：升级 7：穿戴 "/>
+        <entry name="iRoleLevel" search="2" type="uint" size="" desc="角色等级"/>
+        <entry name="operationType" search="1" type="uint" size="" desc="操作类型 ExternalLogOperationType  4：升级 7：穿戴 "/>
         <entry name="iGoodsId" type="uint" size="" desc="当前身上穿戴的纹章ID(只记录纹章相关的道具)"/>
         <entry name="iGridIndex" type="uint" size="" desc="格子索引"/>
         <entry name="iWenzLv" type="uint" size="" desc="当前身上穿戴的纹章等级"/>
         <entry name="iLoginWay" type="uint" size="" desc="登录渠道"/>
 
     </struct>
-    <!--图鉴日志 -->
-    <struct name="HandBook" id="" class="系统玩法" desc="图鉴日志 备注：激活新的图鉴、图鉴等级发生变化的时候记录">
+    <!--图鉴日志 备注：激活新的图鉴、图鉴等级发生变化的时候记录-->
+    <struct name="HandBook" id="" class="系统玩法" desc="图鉴日志">
         <entry name="iEventId" type="string" size="60" desc="游戏事件ID"/>
         <entry name="iWorldId" type="uint" index="1" desc="游戏大区ID"/>
-        <entry name="iUin" type="string" size="60" desc="用户ID"/>
-        <entry name="dtEventTime" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
-        <entry name="iRoleId" type="bigint" index="1" desc="角色ID"/>
-        <entry name="vRoleName" type="string" size="20" desc="角色名"/>
+        <entry name="iUin" search="1" type="string" size="60" desc="用户ID"/>
+        <entry name="dtEventTime" sort="3" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
+        <entry name="iRoleId" sort="2" search="1" type="bigint" index="1" desc="角色ID"/>
+        <entry name="vRoleName" sort="1" search="1" type="string" size="20" desc="角色名"/>
         <entry name="iJobId" type="utinyint" size="" desc="角色职业"/>
-        <entry name="iRoleLevel" type="uint" size="" desc="角色等级"/>
-        <entry name="operationType" type="uint" size="" desc="操作类型 ExternalLogOperationType  4：升级 6：激活 "/>
+        <entry name="iRoleLevel" search="2" type="uint" size="" desc="角色等级"/>
+        <entry name="operationType" search="1" type="uint" size="" desc="操作类型 ExternalLogOperationType  4：升级 6：激活 "/>
         <entry name="iHandBookId" type="uint" size="" desc="玩家当前激活的图鉴ID"/>
         <entry name="iHandBookLv" type="uint" size="" desc="玩家当前激活的图鉴等级"/>
         <entry name="iLoginWay" type="uint" size="" desc="登录渠道"/>
     </struct>
-    <!--任务滞留日志 -->
-    <struct name="Task" id="" class="系统玩法" desc="任务滞留日志 完成任务时记录 主线任务 支线任务 赏金任务 帮会任务 职任务">
+    <!--任务滞留日志 完成任务时记录 主线任务 支线任务 赏金任务 帮会任务 职任务-->
+    <struct name="Task" id="" class="系统玩法" desc="任务滞留日志">
         <entry name="iEventId" type="string" size="60" desc="游戏事件ID"/>
         <entry name="iWorldId" type="uint" index="1" desc="游戏大区ID"/>
-        <entry name="iUin" type="string" size="60" desc="用户ID"/>
-        <entry name="dtEventTime" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
-        <entry name="iRoleId" type="bigint" index="1" desc="角色ID"/>
-        <entry name="vRoleName" type="string" size="20" desc="角色名"/>
+        <entry name="iUin" search="1" type="string" size="60" desc="用户ID"/>
+        <entry name="dtEventTime" sort="3" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
+        <entry name="iRoleId" sort="2" search="1" type="bigint" index="1" desc="角色ID"/>
+        <entry name="vRoleName" sort="1" search="1" type="string" size="20" desc="角色名"/>
         <entry name="iJobId" type="utinyint" size="" desc="角色职业"/>
-        <entry name="iRoleLevel" type="uint" size="" desc="角色等级"/>
+        <entry name="iRoleLevel" search="2" type="uint" size="" desc="角色等级"/>
         <entry name="taskType" type="uint" size="" desc="任务类型"/>
         <entry name="completeTaskId" type="uint" size="" desc="前一个任务ID"/>
-        <entry name="currTaskIds" type="string" size="160" desc="角色当前身上任务ID_多个用逗号分割"/>
+        <entry name="currTaskIds" type="string" size="255" desc="角色当前身上任务ID,多个用逗号分割"/>
+        <!--备注：主线任务可以做成跟等级流失一样的直接在数据后台展示-->
         <entry name="iLoginWay" type="uint" size="" desc="登录渠道"/>
 
     </struct>
-    <!--备注：主线任务可以做成跟等级流失一样的直接在数据后台展示  -->
-    <!--副本星级日志 -->
-    <struct name="FBExit" id="" class="系统玩法"
-            desc="副本星级日志 备注：退出记录一次 佣兵	金币	纹章	经验	装备	守卫公会 没有星级的-佣兵副本	金币副本	经验副本	装备副本	符文副本	荣誉挑战	世界boss	boss之家	个人boss	魔界boss	智慧试炼	勇者之巅	三族战场	公会晚宴	公会争霸	守卫公会">
+    <!--副本星级日志 备注：退出记录一次 佣兵	金币	纹章	经验	装备	守卫公会 没有星级的-佣兵副本	金币副本	经验副本	装备副本	符文副本	荣誉挑战	世界boss	boss之家	个人boss	魔界boss	智慧试炼	勇者之巅	三族战场	公会晚宴	公会争霸	守卫公会-->
+    <struct name="FBExit" id="" class="系统玩法" desc="副本星级日志">
         <entry name="iEventId" type="string" size="60" desc="游戏事件ID"/>
         <entry name="iWorldId" type="uint" index="1" desc="游戏大区ID"/>
-        <entry name="iUin" type="string" size="60" desc="用户ID"/>
-        <entry name="dtEventTime" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
-        <entry name="iRoleId" type="bigint" index="1" desc="角色ID"/>
-        <entry name="vRoleName" type="string" size="20" desc="角色名"/>
+        <entry name="iUin" search="1" type="string" size="60" desc="用户ID"/>
+        <entry name="dtEventTime" sort="3" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
+        <entry name="iRoleId" sort="2" search="1" type="bigint" index="1" desc="角色ID"/>
+        <entry name="vRoleName" sort="1" search="1" type="string" size="20" desc="角色名"/>
         <entry name="iJobId" type="utinyint" size="" desc="角色职业"/>
-        <entry name="iRoleLevel" type="uint" size="" desc="角色等级"/>
+        <entry name="iRoleLevel" search="2" type="uint" size="" desc="角色等级"/>
         <entry name="dungeonType" type="uint" size="" desc="副本类型"/>
         <entry name="sceneId" type="uint" size="" desc="场景ID"/>
         <entry name="enterTime" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
         <entry name="star" type="uint" size="" desc="完成星级"/>
-        <entry name="isEnterOnLogin" type="int" size="" desc="是否是登录时进入的副本"/>
-        <entry name="isOffline" type="int" size="" desc="是否是离线"/>
+        <entry name="isEnterOnLogin" type="uint" size="" desc="是否是登录时进入的副本"/>
+        <entry name="isOffline" type="uint" size="" desc="是否是离线"/>
         <entry name="iLoginWay" type="uint" size="" desc="登录渠道"/>
     </struct>
-    <!--组队副本进入人数日志 -->
-    <struct name="GroupFBEnter" id="" class="系统玩法" desc="组队副本进入人数日志 备注：每次进入副本时记录 经验副本 装备副本">
+    <!--组队副本进入人数日志 备注：每次进入副本时记录 经验副本 装备副本-->
+    <struct name="GroupFBEnter" id="" class="系统玩法" desc="组队副本进入人数日志">
         <entry name="iEventId" type="string" size="60" desc="游戏事件ID"/>
         <entry name="iWorldId" type="uint" index="1" desc="游戏大区ID"/>
-        <entry name="iUin" type="string" size="60" desc="用户ID"/>
-        <entry name="dtEventTime" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
-        <entry name="iRoleId" type="bigint" index="1" desc="角色ID"/>
-        <entry name="vRoleName" type="string" size="20" desc="角色名"/>
+        <entry name="iUin" search="1" type="string" size="60" desc="用户ID"/>
+        <entry name="dtEventTime" sort="3" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
+        <entry name="iRoleId" sort="2" search="1" type="bigint" index="1" desc="角色ID"/>
+        <entry name="vRoleName" sort="1" search="1" type="string" size="20" desc="角色名"/>
         <entry name="iJobId" type="utinyint" size="" desc="角色职业"/>
-        <entry name="iRoleLevel" type="uint" size="" desc="角色等级"/>
+        <entry name="iRoleLevel" search="2" type="uint" size="" desc="角色等级"/>
         <entry name="dungeonType" type="uint" size="" desc="副本类型"/>
-        <entry name="isEnterOnLogin" type="int" size="" desc="是否是登录时进入的副本"/>
+        <entry name="isEnterOnLogin" type="uint" size="" desc="是否是登录时进入的副本"/>
         <entry name="teamPeople" type="uint" size="" desc="角色每次进入经验副本的队伍人数"/>
         <entry name="iLoginWay" type="uint" size="" desc="登录渠道"/>
 
     </struct>
+
     <!--BOSS相关日志 -->
     <struct name="BossFBExit" id="" class="系统玩法" desc="boss场景退出日志">
         <entry name="iEventId" type="string" size="60" desc="游戏事件ID"/>
         <entry name="iWorldId" type="uint" index="1" desc="游戏大区ID"/>
-        <entry name="iUin" type="string" size="60" desc="用户ID"/>
-        <entry name="dtEventTime" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
-        <entry name="iRoleId" type="bigint" index="1" desc="角色ID"/>
-        <entry name="vRoleName" type="string" size="20" desc="角色名"/>
+        <entry name="iUin" search="1" type="string" size="60" desc="用户ID"/>
+        <entry name="dtEventTime" sort="3" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
+        <entry name="iRoleId" sort="2" search="1" type="bigint" index="1" desc="角色ID"/>
+        <entry name="vRoleName" sort="1" search="1" type="string" size="20" desc="角色名"/>
         <entry name="iJobId" type="utinyint" size="" desc="角色职业"/>
-        <entry name="iRoleLevel" type="uint" size="" desc="角色等级"/>
+        <entry name="iRoleLevel" search="2" type="uint" size="" desc="角色等级"/>
         <entry name="sceneType" type="uint" size="" desc="SceneType 3:个人boss 21:世界boss	22:魔界boss	23:boss之家"/>
-        <entry name="killedBosses" type="string" size="100" desc="杀死的BOSS ID,逗号分割"/>
-        <entry name="hurtBosses" type="string" size="100" desc="打伤的BOSS ID,逗号分割"/>
-        <entry name="killedMonsters" type="string" size="100" desc="杀死的怪物 ID,逗号分割"/>
-        <entry name="hurtMonsters" type="string" size="100" desc="打伤的怪物 ID,逗号分割"/>
+        <entry name="killedBosses" type="string" size="500" desc="杀死的BOSS ID,逗号分割"/>
+        <entry name="hurtBosses" type="string" size="500" desc="打伤的BOSS ID,逗号分割"/>
+        <entry name="killedMonsters" type="string" size="500" desc="杀死的怪物 ID,逗号分割"/>
+        <entry name="hurtMonsters" type="string" size="500" desc="打伤的怪物 ID,逗号分割"/>
         <entry name="iLoginWay" type="uint" size="" desc="登录渠道"/>
     </struct>
+
     <!-- 外显使用情况 从transform_feather开始，后面的需要和TransformType的定义保持一致-->
     <struct name="ExternalDisplayState" desc="外显状态 下线时记录">
         <entry name="iEventId" type="string" size="60" desc="游戏事件ID"/>
         <entry name="iWorldId" type="uint" index="1" desc="游戏大区ID"/>
-        <entry name="iUin" type="string" size="60" desc="用户ID"/>
-        <entry name="dtEventTime" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
-        <entry name="iRoleId" type="bigint" index="1" desc="角色ID"/>
-        <entry name="vRoleName" type="string" size="20" desc="角色名"/>
+        <entry name="iUin" search="1" type="string" size="60" desc="用户ID"/>
+        <entry name="dtEventTime" sort="3" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
+        <entry name="iRoleId" sort="2" search="1" type="bigint" index="1" desc="角色ID"/>
+        <entry name="vRoleName" sort="1" search="1" type="string" size="20" desc="角色名"/>
         <entry name="iJobId" type="utinyint" size="" desc="角色职业"/>
-        <entry name="iRoleLevel" type="uint" size="" desc="角色等级"/>
+        <entry name="iRoleLevel" search="2" type="uint" size="" desc="角色等级"/>
 
         <entry name="mount" type="uint" desc="使用坐骑"/>
         <entry name="pet" type="uint" desc="使用佣兵"/>
@@ -483,11 +486,11 @@
     <struct name="Diamond" id="" desc="钻石绑钻日常操作消耗">
         <entry name="iEventId" type="string" size="60" desc="游戏事件ID"/>
         <entry name="iWorldId" type="uint" index="1" desc="游戏大区ID"/>
-        <entry name="iUin" type="string" size="60" desc="用户ID"/>
-        <entry name="dtEventTime" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
-        <entry name="iRoleId" type="bigint" index="1" desc="角色ID"/>
+        <entry name="iUin" search="1" type="string" size="60" desc="用户ID"/>
+        <entry name="dtEventTime" sort="3" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
+        <entry name="iRoleId" sort="2" search="1" type="bigint" index="1" desc="角色ID"/>
         <entry name="vClientIp" type="string" size="16" desc="客户端所在ip"/>
-        <entry name="vRoleName" type="string" size="20" desc="角色名"/>
+        <entry name="vRoleName" sort="1" search="1" type="string" size="20" desc="角色名"/>
         <entry name="iJobId" type="utinyint" size="" desc="角色职业"/>
         <entry name="costDiamond" type="bigint" size="" desc="支付消耗钻石"/>
         <entry name="costSystemDiamond" type="bigint" size="" desc="支付消耗系统钻石"/>
@@ -502,11 +505,11 @@
     <struct name="NewShop" id="" desc="钻石绑钻各类商城消耗">
         <entry name="iEventId" type="string" size="60" desc="游戏事件ID"/>
         <entry name="iWorldId" type="uint" index="1" desc="游戏大区ID"/>
-        <entry name="iUin" type="string" size="60" desc="用户ID"/>
-        <entry name="dtEventTime" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
-        <entry name="iRoleId" type="bigint" index="1" desc="角色ID"/>
+        <entry name="iUin" search="1" type="string" size="60" desc="用户ID"/>
+        <entry name="dtEventTime" sort="3" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
+        <entry name="iRoleId" sort="2" search="1" type="bigint" index="1" desc="角色ID"/>
         <entry name="vClientIp" type="string" size="16" desc="客户端所在ip"/>
-        <entry name="vRoleName" type="string" size="20" desc="角色名"/>
+        <entry name="vRoleName" sort="1" search="1" type="string" size="20" desc="角色名"/>
         <entry name="iJobId" type="utinyint" size="" desc="角色职业"/>
         <entry name="costDiamond" type="bigint" size="" desc="支付消耗钻石"/>
         <entry name="costSystemDiamond" type="bigint" size="" desc="支付消耗系统钻石"/>
@@ -519,4 +522,51 @@
         <entry name="goodsCount" type="string" size="40" desc="购买的商品数量,多个用逗号分割,和物品ID一一对应"/>
         <entry name="iLoginWay" type="uint" size="" desc="登录渠道"/>
     </struct>
+    <struct name="PlayerMail" id="" desc="个人 邮件发送日志">
+        <entry name="iEventId" type="string" size="60" desc="游戏事件ID"/>
+        <entry name="iWorldId" type="uint" index="1" desc="游戏大区ID"/>
+        <entry name="iUin" search="1" type="string" size="60" desc="用户ID"/>
+        <entry name="dtEventTime" sort="3" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
+        <entry name="iRoleId" sort="2" search="1" type="bigint" index="1" desc="角色ID"/>
+        <entry name="vClientIp" type="string" size="16" desc="客户端所在ip"/>
+        <entry name="vRoleName" sort="1" search="1" type="string" size="20" desc="角色名"/>
+        <entry name="iJobId" type="utinyint" size="" desc="角色职业"/>
+        <entry name="iOperate" search="1" type="uint" size="60" desc="操作类型"/>
+        <entry name="goodsInfo" type="string" size="200" desc="邮件物品，格式:goodsId=count;goodsId=count..."/>
+        <entry name="valueInfo" type="string" size="200" desc="值类型信息,格式:valueType=count;valueType=count...(valueType见value.proto)"/>
+        <entry name="iLoginWay" type="uint" size="" desc="登录渠道"/>
+    </struct>
+    <struct name="GlobalMail" id="" desc="全服邮件发送日志" dont_use_special_arg="DONT">
+        <entry name="iEventId" type="string" size="60" desc="游戏事件ID"/>
+        <entry name="iWorldId" type="uint" index="1" desc="游戏大区ID"/>
+        <entry name="dtEventTime" sort="3" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
+        <entry name="iOperate" search="1" type="uint" size="60" desc="操作类型"/>
+        <entry name="goodsInfo" type="string" size="200" desc="邮件物品，格式:goodsId=count;goodsId=count..."/>
+        <entry name="valueInfo" type="string" size="200" desc="值类型信息,格式:valueType=count;valueType=count...(valueType见value.proto)"/>
+    </struct>
+    <struct name="BanTalk" id="" desc="禁言">
+        <entry name="iEventId" type="string" size="60" desc="游戏事件ID"/>
+        <entry name="iWorldId" type="uint" index="1" desc="游戏大区ID"/>xi
+        <entry name="iUin" search="1" type="string" size="60" desc="用户ID"/>
+        <entry name="dtEventTime" sort="3" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
+        <entry name="iRoleId" sort="2" search="1" type="bigint" index="1" desc="角色ID"/>
+        <entry name="vClientIp" type="string" size="16" desc="客户端所在ip"/>
+        <entry name="vRoleName" sort="1" search="1" type="string" size="20" desc="角色名"/>
+        <entry name="iJobId" type="utinyint" size="" desc="角色职业"/>
+        <entry name="banTalkType" type="uint" size="" desc="禁言类型"/>
+        <entry name="banCause" sort="5" type="string" size="3000" desc="禁言原因"/>
+    </struct>
+
+    <struct name="BanAccount" id="" desc="禁账号" dont_use_special_arg="DONT">
+        <entry name="iEventId" type="string" size="60" desc="游戏事件ID"/>
+        <entry name="iWorldId" type="uint" index="1" desc="游戏大区ID"/>
+        <entry name="iUin" search="1" type="string" size="60" desc="用户ID"/>
+        <entry name="dtEventTime" sort="3" type="datetime" size="" desc="记录时间, 格式 YYYY-MM-DD HH:MM:SS"/>
+        <entry name="iLoginWay" type="uint" size="" desc="登录渠道"/>
+        <entry name="vClientIp" sort="4" type="string" size="16" desc="客户端所在ip"/>
+        <entry name="deviceId" sort="1" search="1" type="string" size="100" desc="设备号"/>
+        <entry name="banKey" sort="5" search="1" type="string" size="100" desc="禁封原因"/>
+
+    </struct>
+
 </metalib>
